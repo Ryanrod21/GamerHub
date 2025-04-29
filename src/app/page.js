@@ -1,95 +1,73 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useState } from 'react';
 
-export default function Home() {
+import './App.css';
+
+import ShowAlarm from '../sections/ShowAlarm';
+import ShowMusic from '../sections/ShowMusic';
+import ShowStream from '../sections/ShowStream';
+import NavBar from '../sections/NavBar';
+import SideHero from '../sections/SideHero';
+import CreateList from '../sections/CreateList';
+import ItemList from '../sections/ItemList';
+import GameHero from '../sections/GameHero';
+import MainNews from '../sections/MainNews';
+
+import ProfileData from '../data/ProfileData';
+import GameData from '../data/GameData';
+import MusicData from '../data/MusciData';
+import GameNewsData from '../data/GameNewsData';
+
+function App() {
+  const [list, setList] = useState([]);
+
+  const onEditList = (id, newItem) => {
+    const updateItem = list.map((edit) => {
+      if (edit.id === id) {
+        return { ...edit, item: newItem };
+      }
+      return edit;
+    });
+
+    setList(updateItem);
+  };
+
+  const addList = ({ item }) => {
+    const updateItem = [
+      ...list,
+      { id: Math.round(Math.random() * 9999), item },
+    ];
+
+    setList(updateItem);
+  };
+
+  const handleRemove = (id) => {
+    const updateList = list.filter((item) => {
+      return item.id !== id;
+    });
+    setList(updateList);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+      <div className="Nav-SideHero">
+        <SideHero ProfileData={ProfileData} />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+        <div className="MainHero">
+          <NavBar />
+          <div className="Inner-MainHero">
+            <MainNews GameNewsData={GameNewsData} />
+            <ShowMusic MusicData={MusicData} />
+          </div>
+          <GameHero GameData={GameData} />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      {/* <ShowAlarm />
+      <CreateList onCreate={addList} />
+      <ItemList onList={list} onRemove={handleRemove} onEditList={onEditList} />
+      <ShowStream /> */}
     </div>
   );
 }
+
+export default App;

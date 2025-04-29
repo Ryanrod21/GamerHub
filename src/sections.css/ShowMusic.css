@@ -1,0 +1,142 @@
+.Music-Body {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.164);
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(51, 51, 51);
+  max-width: 329px;
+  overflow: hidden;
+  color: white;
+  box-shadow: 0 0 20px black;
+}
+.musicImg {
+  border: 1px solid black;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+}
+
+.albumImg {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 100%;
+  object-fit: cover;
+  max-height: 335px;
+  max-width: 329px;
+}
+
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  /* border: 1px solid black; */
+  color: white;
+  background: rgb(51, 51, 51);
+}
+
+.scroll-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 10s linear infinite;
+  font-size: 21px;
+}
+
+.songList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.musicQueue {
+  margin: 0;
+  color: white;
+  padding-bottom: 20px;
+}
+.musicBtn {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+  justify-content: center;
+  padding-bottom: 40px;
+  background: rgb(51, 51, 51);
+}
+
+.musicBtn button {
+  padding: 5px 10px;
+}
+
+.scroll-list-container {
+  width: 100%;
+  margin: 0 40px;
+  box-shadow: 0 0 8px white;
+  height: 35px;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+}
+
+.scroll-song-list-text {
+  color: black;
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 12s linear infinite;
+  color: white;
+}
+
+.musicBtnContainer {
+  width: 100%;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .Music-Body {
+    background-color: blue;
+  }
+  .musicBtnContainer {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+  }
+  .musicBtn {
+    font-size: 1px;
+  }
+  .musicBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .scroll-container {
+    font-size: 10px;
+    width: 130px;
+  }
+  .scroll-text {
+    font-size: 10px;
+  }
+  .scroll-list-container {
+    width: 130px;
+  }
+  .musicImg {
+    width: 130px;
+    height: 130px;
+  }
+}

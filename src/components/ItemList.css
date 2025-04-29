@@ -1,0 +1,14 @@
+.allItemList {
+  text-align: center;
+  width: 62%;
+  border: 1px solid black;
+}
+
+.allCards {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+}
