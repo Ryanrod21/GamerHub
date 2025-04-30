@@ -439,6 +439,33 @@ body {
   transform: translateY(0);
 }
 
+.about-us-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  width: 20%;
+  align-items: center;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+}
+
+.about-us h1 {
+  font-size: 50px;
+}
+
+.about-us p {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 1400px) {
   #root {
     width: 95%;
