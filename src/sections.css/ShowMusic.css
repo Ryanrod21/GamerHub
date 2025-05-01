@@ -112,7 +112,7 @@
   .Music-Body {
     background-color: blue;
   }
-  .musicBtnContainer {
+  /* .musicBtnContainer {
     display: flex;
     justify-content: center;
     gap: 7px;
@@ -133,9 +133,6 @@
   }
   .scroll-list-container {
     width: 130px;
-  }
-  .musicImg {
-    width: 130px;
-    height: 130px;
-  }
+  } */
+
 }
