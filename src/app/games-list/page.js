@@ -1,3 +1,4 @@
+import Navbar from '@/sections/NavBar';
 import GameCat from '../../data/GameCat';
 
 import '../App.css';
@@ -18,7 +19,12 @@ const renderedGames = GameCat.map((game, index) => {
 });
 
 const GamesListPage = () => {
-  return <div className="game-list-container">{renderedGames}</div>;
+  return (
+    <>
+      <Navbar />
+      <div className="game-list-container">{renderedGames}</div>
+    </>
+  );
 };
 
 export default GamesListPage;

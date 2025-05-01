@@ -3,42 +3,42 @@ import Dropdown from '../components/NavDropdown';
 import SearchBar from '../components/SearchBar';
 
 const Navbar = () => {
-  const styles = {
-    nav: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '0 25px',
-      background: '#333',
-      color: '#fff',
-      width: '97%',
-      borderRadius: '30px',
-    },
-    logo: {
-      margin: 0,
-    },
-    navLinks: {
-      listStyle: 'none',
-      display: 'flex',
-      gap: '16px',
-    },
-    // linkTheme: {
-    //   display: 'flex',
-    //   flexDirection: 'row',
-    //   gap: '60px',
-    // },
-  };
+  // const styles = {
+  //   nav: {
+  //     display: 'flex',
+  //     justifyContent: 'space-between',
+  //     alignItems: 'center',
+  //     padding: '0 25px',
+  //     background: '#333',
+  //     color: '#fff',
+  //     width: '97%',
+  //     borderRadius: '30px',
+  //   },
+  //   logo: {
+  //     margin: 0,
+  //   },
+  //   navLinks: {
+  //     listStyle: 'none',
+  //     display: 'flex',
+  //     gap: '16px',
+  //   },
+  // linkTheme: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   gap: '60px',
+  // },
+  // };
 
   return (
-    <nav style={styles.nav}>
+    <nav className="navbar">
       <div className="logo-search-bar">
-        <h2 style={styles.logo}>TheGamerHub</h2>
+        <h2 className="Logo">TheGamerHub</h2>
         <SearchBar />
       </div>
       <div className="nav-link-dropdown">
-        <ul style={styles.navLinks}>
+        <ul className="nav-links">
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="/about-page">About</a>

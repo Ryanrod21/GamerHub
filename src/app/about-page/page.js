@@ -2,8 +2,14 @@
 import Navbar from '@/sections/NavBar';
 
 import '../App.css';
+import { useEffect } from 'react';
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.body.style.background = 'grey';
+    document.body.style.margin = '0';
+  }, []);
+
   return (
     <>
       <Navbar />
