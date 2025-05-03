@@ -1,0 +1,189 @@
+.friends-page {
+  display: flex;
+  padding: 50px;
+  width: 89%;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.friends-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.friends-head {
+  color: white;
+  background-color: #333;
+  padding-bottom: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border-radius: 10px;
+}
+
+.friends-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 3px;
+}
+
+.friends-search input {
+  width: 50%;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.friends-search button {
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.friends-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: #333;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+.friends-body h2 {
+  text-align: center;
+  color: white;
+}
+
+.friends-body .FriendsCardWrapper {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.friends-body .FriendsListCard {
+  width: 100%;
+}
+
+.friends-body span {
+  font-size: 40px;
+}
+
+.friends-body .FriendsCard {
+  gap: 40px;
+}
+
+.friends-body .FriendsOfflineCard {
+  gap: 40px;
+}
+
+.friends-body .OfflineCardWrapper {
+  border: 1px solid red;
+}
+
+.friends-body .ProfileImg {
+  width: 170px;
+  height: 170px;
+}
+
+.friends-body .ProfileImgOffline {
+  width: 170px;
+  height: 170px;
+}
+
+.profile-search-list {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.profile-search-list h1 {
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+  width: 100%;
+}
+
+.profile-search-list h1:hover {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+}
+
+.profileCard {
+  padding: 20px 0 20px 40px;
+  width: 100%;
+  border-bottom: 4px solid #131313;
+  border-radius: 10px;
+  display: flex;
+  gap: 200px;
+}
+
+.profileCard img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileCard h2 {
+  font-size: 40px;
+  color: white;
+  margin: 0;
+}
+
+.profileCard p {
+  color: white;
+}
+
+.profileCard ul {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+}
+
+.profileCard li {
+  color: white;
+  list-style: none;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.test {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 0;
+}

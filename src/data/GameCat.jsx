@@ -11,6 +11,24 @@ const GameCat = [
     },
     type: 'Single Player',
   },
+  {
+    thebackground: {
+      backgroundImage: `url(/marvelrivals.jpg)`,
+    },
+    type: 'Multiplayer',
+  },
+  {
+    thebackground: {
+      backgroundImage: `url(/fighting.jpg)`,
+    },
+    type: 'Fighting',
+  },
+  {
+    thebackground: {
+      backgroundImage: `url(/race.jpg)`,
+    },
+    type: 'Racing',
+  },
 ];
 
 export default GameCat;

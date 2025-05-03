@@ -6,7 +6,7 @@ function SideHero({ ProfileData }) {
   return (
     <div className="SideHero">
       <p>
-        <a href="#">My Dashboard</a>
+        <a href="/">My Dashboard</a>
       </p>
       <p>
         <a href="/games-list">Game's List</a>
@@ -15,7 +15,7 @@ function SideHero({ ProfileData }) {
         <a href="/friends-page">Friends</a>
       </p>
       <p>
-        <a href="#">Notification</a>
+        <a href="/notification-page">Notification</a>
       </p>
 
       <FriendsList ProfileData={ProfileData} />

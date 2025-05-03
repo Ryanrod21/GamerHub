@@ -1,0 +1,81 @@
+.notification-page {
+  display: flex;
+  align-items: flex-start;
+  width: 89%;
+  padding: 50px;
+  gap: 15px;
+}
+
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.notification-body {
+  width: 100%;
+}
+
+.message-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.notification-head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  margin-top: 40px;
+  border-radius: 10px;
+}
+
+.notification-text {
+  color: white;
+}
+
+.no-notification-text {
+  text-align: center;
+  background-color: #333;
+  color: white;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.message-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.message-recieved-container {
+  background-color: #333;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dismiss-btn:hover {
+  animation: fa-bounce 1s;
+}
+
+.mm {
+  display: flex;
+}
+
+.tt {
+  background-color: blue;
+}

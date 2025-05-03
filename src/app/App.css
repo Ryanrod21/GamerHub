@@ -383,62 +383,6 @@ body {
   margin-top: 30px;
 }
 
-.game-list-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-  flex-wrap: wrap;
-}
-
-.game-item {
-  height: 400px;
-  width: 700px;
-  background-size: cover;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  border-radius: 6px;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-  cursor: pointer;
-}
-
-.game-item:hover {
-  filter: grayscale(0%);
-}
-
-.game-item span {
-  background: white;
-  /* padding: 10px; */
-  font-weight: 700;
-  border-radius: 0 6px 0 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  color: black;
-  font-size: 35px;
-}
-
-.game-item:hover span {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.game-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: calc(var(--i) * 0.1s);
-}
-
-.game-item:hover .game-text span {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .about-us-container {
   width: 100%;
   display: flex;
@@ -475,21 +419,20 @@ body {
     background-color: red;
   }
 
-  .MainNews-SlideBtn h2{
+  .MainNews-SlideBtn h2 {
     font-size: 1.1rem;
-  } 
+  }
 
   .MainNews-SlideBtn p {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
-  
 }
 
 @media screen and (max-width: 790px) {
   body {
     background-color: blue;
   }
-  
+
   .GameHeroCard {
     width: 300px;
   }

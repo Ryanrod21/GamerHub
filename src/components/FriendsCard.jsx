@@ -1,3 +1,5 @@
+'use client';
+
 import '../app/App.css';
 import { FaCircle } from 'react-icons/fa';
 

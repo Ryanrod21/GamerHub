@@ -79,6 +79,45 @@ const ProfileData = [
     status: 'online',
     isFriend: false,
   },
+  {
+    name: 'Lion',
+    img: '/lion1.jpg',
+    id: 10,
+    description: 'This is user 3 testing',
+    status: 'online',
+    isFriend: false,
+    games: [
+      { title: 'Fortnite', hoursPlayed: '356 Hours' },
+      { title: 'Halo 3', hoursPlayed: '856 Hours' },
+      { title: 'CoD', hoursPlayed: '492' },
+    ],
+  },
+  {
+    name: 'Halo',
+    img: '/lion1.jpg',
+    id: 22,
+    description: 'This is user 3 testing',
+    status: 'online',
+    isFriend: false,
+    games: [
+      { title: 'Fortnite', hoursPlayed: '356 Hours' },
+      { title: 'Halo 3', hoursPlayed: '856 Hours' },
+      { title: 'CoD', hoursPlayed: '492' },
+    ],
+  },
+  {
+    name: 'Bull',
+    img: '/lion1.jpg',
+    id: 55,
+    description: 'This is user 3 testing',
+    status: 'online',
+    isFriend: false,
+    games: [
+      { title: 'Fortnite', hoursPlayed: '356 Hours' },
+      { title: 'Halo 3', hoursPlayed: '856 Hours' },
+      { title: 'CoD', hoursPlayed: '492' },
+    ],
+  },
 ];
 
 export default ProfileData;
