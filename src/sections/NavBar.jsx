@@ -21,7 +21,7 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a href="/login-page">Login</a>
           </li>
         </ul>
         <Dropdown />

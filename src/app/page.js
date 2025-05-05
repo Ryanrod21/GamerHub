@@ -14,6 +14,7 @@ import ProfileData from '../data/ProfileData';
 import GameData from '../data/GameData';
 import MusicData from '../data/MusciData';
 import GameNewsData from '../data/GameNewsData';
+import NotificationData from '../data/NotificationData';
 
 function App() {
   return (
