@@ -26,9 +26,9 @@ const FriendsPage = () => {
   return (
     <div>
       <div className="friends-page">
-        <SideHero ProfileData={ProfileData} />
+       
         <div className="friends-container">
-          <Navbar />
+         
           <div className="friends-head">
             <h1>Search for Friends</h1>
             <div className="friends-search">

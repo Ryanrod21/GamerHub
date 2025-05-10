@@ -12,7 +12,7 @@ const AboutPage = () => {
 
   return (
     <>
-      <Navbar />
+      
       <div className="about-us-container">
         <div className="about-us">
           <h1>About Us</h1>

@@ -5,17 +5,76 @@
   margin: 0;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   transition: background-color 0.5s ease;
+  margin: 0;
+  overflow: hidden;
   /* background-color: rgb(226, 48, 107); */
+}
+
+.page-wrapper {
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.inner-wrapper {
+  display: flex;
+  /* justify-content: center;
+  align-items: flex-start; */
+  gap: 10px;
+
+  height:100%;
+  flex:1;
+}
+
+.nav-content-wrapper {
+  width: 89%;
+  /* height: 100%; */
+  gap:10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 20px 20px 20px 0;
+  flex:1;
+}
+
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 10px;
+  background: #333;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+/* Scrollbar thumb */
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #58a6ff;
+  border-radius: 20px;
+}
+
+/* Scrollbar track background */
+.scrollable-content::-webkit-scrollbar-track {
+  background-color: transparent;
+  border:3px solid #58a6ff;
+  border-radius: 20px;
 }
 
 .Nav-SideHero {
   display: flex;
   gap: 15px;
   align-items: flex-start;
-  width: 89%;
-  padding: 50px;
+  width: 100%;
+  /* padding: 50px; */
 }
 
 .Nav {
@@ -36,10 +95,36 @@ body {
   position: sticky;
   box-shadow: 0 0 20px black;
   z-index: 9;
+  margin: 20px 0 20px 20px;
+  justify-content: space-evenly;
 }
 
 .SideHero a {
   color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.SideHero p {
+   margin: 0;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid #333;
+}
+
+.SideHero p.active {
+  background: #58a6ff;
+  border-radius: 10px;
+  border: 1px solid #58a6ff;
+}
+
+.SideHero p:not(.active):hover {
+  border: 1px solid #58a6ff;
+  border-radius: 10px;
+}
+
+.FriendsPanel p, .FriendsListCard p {
+  border: none !important;
 }
 
 .MainHero {
@@ -52,10 +137,11 @@ body {
 
 .MainNews {
   border-radius: 10px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   box-shadow: 0 0 20px black;
+  
 }
 
 .MainNews button {
@@ -71,6 +157,7 @@ body {
 .MainNews-Button {
   width: 100%;
   position: relative;
+  height: 100%;
 }
 
 .MainNews img {
@@ -123,7 +210,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 50%;
-  padding-top: 15px;
+  /* padding-top: 15px; */
   gap: 30px;
 }
 
@@ -145,7 +232,7 @@ body {
 .FriendsListCard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   color: white;
 }
 
@@ -169,19 +256,14 @@ body {
   cursor: pointer;
 }
 
-.FriendsCardWrapper {
+.FriendsCardWrapper, .OfflineCardWrapper {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
 }
 
-.OfflineCardWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
 
 .ProfileHover {
   font-size: 12px;
@@ -256,10 +338,11 @@ body {
 .OnlinePlus {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   font-size: 18px;
   font-weight: bold;
   color: white;
+  justify-content: center;
 }
 
 .popup-box {
@@ -297,6 +380,7 @@ body {
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+    margin-left: 10px;
 }
 
 .GameHeroCard {
@@ -372,15 +456,29 @@ body {
 
 .search-bar button {
   padding: 8px 12px;
-  background-color: #ffffff2c;
+  /* background-color: #ffffff2c; */
+  background-color: #58a6ff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 700;
 }
 
-.Logout {
+ .Logout {
   margin-top: 30px;
+  background-color: transparent;
+  border: 3px solid #58a6ff;
+  color: white;
+  font-weight: 700;;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+}
+
+.Logout:hover {
+  background-color: #58a6ff;
+  cursor: pointer;
 }
 
 .about-us-container {

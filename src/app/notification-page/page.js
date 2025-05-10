@@ -13,9 +13,9 @@ import ProfileData from '@/data/ProfileData';
 function NotificationPage({ notification, removeNotification, clearAll }) {
   return (
     <div className="notification-page">
-      <SideHero ProfileData={ProfileData} />
+      
       <div className="notification-container">
-        <Navbar />
+      
         <NotificationComponent
           notification={notification}
           removeNotification={removeNotification}

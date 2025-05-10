@@ -1,8 +1,15 @@
+
 import '../app/navbar.css';
 import Dropdown from '../components/NavDropdown';
 import SearchBar from '../components/SearchBar';
 
+
+
 const Navbar = () => {
+
+ 
+
+
   return (
     <nav className="navbar">
       <div className="logo-search-bar">

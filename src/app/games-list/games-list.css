@@ -2,10 +2,12 @@
   background-color: red;
 }
 
+
+
 .gamelist-page {
   display: flex;
-  padding: 50px;
-  width: 89%;
+  /* padding: 50px; */
+  width: 100%;
   gap: 15px;
   align-items: flex-start;
 }
@@ -51,7 +53,7 @@
 
 .rendered-games-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   flex-wrap: wrap;

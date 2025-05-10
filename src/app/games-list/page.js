@@ -25,9 +25,9 @@ const GamesListPage = () => {
   return (
     <div>
       <div className="gamelist-page">
-        <SideHero ProfileData={ProfileData} />
+        
         <div className="game-list-container">
-          <Navbar />
+          
           <div className="game-list-hero">
             <div className="game-list-head">
               <h1>Games list</h1>

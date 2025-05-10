@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
-
+import Navbar from '@/sections/NavBar';
+import GameCat from "@/data/GameCat";
+import ProfileData from '@/data/ProfileData';
+import SideHero from '@/sections/SideHero';
+import "../app/games-list/games-list.css"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +24,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <div className="page-wrapper">
+          <div className="inner-wrapper">
+        <SideHero ProfileData={ProfileData}/>
+        <div className="nav-content-wrapper">
+      <Navbar />
+      <div className="scrollable-content">
+      {children}
+      </div>
+      </div>
+      </div>
+        </div>
       </body>
     </html>
   );
