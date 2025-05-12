@@ -9,15 +9,17 @@ import './games-list.css';
 const renderedGames = GameCat.map((game, index) => {
   const letters = game.type.split('');
   return (
-    <div className="game-item" key={index} style={game.thebackground}>
-      <span className="game-text">
-        {letters.map((letter, i) => (
-          <span key={i} style={{ '--i': i }}>
-            {letter === ' ' ? '\u00A0' : letter}
-          </span>
-        ))}
-      </span>
-    </div>
+    <a href={game.link} key={index}>
+      <div className="game-item" style={game.thebackground}>
+        <span className="game-text">
+          {letters.map((letter, i) => (
+            <span key={i} style={{ '--i': i }}>
+              {letter === ' ' ? '\u00A0' : letter}
+            </span>
+          ))}
+        </span>
+      </div>
+    </a>
   );
 });
 
@@ -25,9 +27,7 @@ const GamesListPage = () => {
   return (
     <div>
       <div className="gamelist-page">
-        
         <div className="game-list-container">
-          
           <div className="game-list-hero">
             <div className="game-list-head">
               <h1>Games list</h1>

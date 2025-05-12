@@ -4,6 +4,7 @@ const GameCat = [
       backgroundImage: `url(/br.jpg)`,
     },
     type: 'Battle Royal',
+    link: '/battleroyal',
   },
   {
     thebackground: {

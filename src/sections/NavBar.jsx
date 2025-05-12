@@ -1,15 +1,8 @@
-
 import '../app/navbar.css';
 import Dropdown from '../components/NavDropdown';
 import SearchBar from '../components/SearchBar';
 
-
-
 const Navbar = () => {
-
- 
-
-
   return (
     <nav className="navbar">
       <div className="logo-search-bar">
@@ -28,7 +21,7 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           <li>
-            <a href="/login-page">Login</a>
+            <a href="/login">Login</a>
           </li>
         </ul>
         <Dropdown />

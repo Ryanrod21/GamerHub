@@ -1,6 +1,6 @@
 import './login.css';
 
-function LoginPage() {
+function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
@@ -28,4 +28,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;

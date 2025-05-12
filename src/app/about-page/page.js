@@ -2,6 +2,7 @@
 import Navbar from '@/sections/NavBar';
 
 import '../App.css';
+import './about.css';
 import { useEffect } from 'react';
 
 const AboutPage = () => {
@@ -12,7 +13,6 @@ const AboutPage = () => {
 
   return (
     <>
-      
       <div className="about-us-container">
         <div className="about-us">
           <h1>About Us</h1>
