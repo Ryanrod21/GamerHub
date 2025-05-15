@@ -282,8 +282,8 @@ body {
   padding: 6px 10px;
   border-radius: 4px;
   position: absolute;
-  bottom: 125%; /* position above the text */
-  left: 50%;
+  bottom: -163%; /* position above the text */
+  right: -134%;
   transform: translateX(-50%);
   white-space: nowrap;
   z-index: 9999;
@@ -291,6 +291,12 @@ body {
   transition: opacity 0.2s ease-in-out;
   transform: translateX(0);
   border-radius: 10px;
+  width: 155px;
+  height: 118px;
+}
+
+.Profile-popup ul {
+  padding: 0;
 }
 
 .Profile-popupOffline {
@@ -301,15 +307,16 @@ body {
   padding: 6px 10px;
   border-radius: 4px;
   position: absolute;
-  bottom: 125%; /* position above the text */
-  left: 50%;
+  bottom: -163%; /* position above the text */
+  right: -134%;
   transform: translateX(-50%);
-  white-space: nowrap;
   z-index: 9999;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   transform: translateX(0);
   border-radius: 10px;
+  width: 155px;
+  height: 118px;
 }
 
 .Profile-popup li {

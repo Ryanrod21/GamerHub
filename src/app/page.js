@@ -18,17 +18,16 @@ import NotificationData from '../data/NotificationData';
 
 function App() {
   return (
-      // <div className="Nav-SideHero">
+    // <div className="Nav-SideHero">
 
-        <div className="MainHero">
-          <div className="Inner-MainHero">
-            <MainNews GameNewsData={GameNewsData} />
-            <ShowMusic MusicData={MusicData} />
-          </div>
-          <GameHero GameData={GameData} />
-        </div>
-      // </div> 
-    
+    <div className="MainHero">
+      <div className="Inner-MainHero">
+        <MainNews GameNewsData={GameNewsData} />
+        <ShowMusic MusicData={MusicData} />
+      </div>
+      <GameHero GameData={GameData} />
+    </div>
+    // </div>
   );
 }
 

@@ -1,6 +1,17 @@
 import './login.css';
 
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 function Login() {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log('Logged in:', userCredential.user);
+    })
+    .catch((error) => {
+      console.error('Error logging in:', error);
+    });
+
   return (
     <div className="login-page">
       <div className="login-container">
