@@ -1,16 +1,18 @@
+'use client';
+
 import './login.css';
 
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+// import { auth } from '../firebase';
+// import { signInWithEmailAndPassword } from 'firebase/auth';
 
 function Login() {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log('Logged in:', userCredential.user);
-    })
-    .catch((error) => {
-      console.error('Error logging in:', error);
-    });
+  // signInWithEmailAndPassword(auth, email, password)
+  //   .then((userCredential) => {
+  //     console.log('Logged in:', userCredential.user);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error logging in:', error);
+  //   });
 
   return (
     <div className="login-page">
@@ -23,11 +25,16 @@ function Login() {
 
           <label htmlFor="password">Password</label>
           <input id="password" type="password" placeholder="Password" />
+          <div className="forgotpassword-div">
+            <a href="/register">Forgot Password ?</a>
+          </div>
 
-          <button type="submit">Log In</button>
+          <button type="submit" className="login-button">
+            Log In
+          </button>
 
           <div className="newuser-div">
-            <a href="#">New User? Sign up</a>
+            <a href="/register">New User? Sign up</a>
           </div>
 
           <button type="button" className="back-home-button">

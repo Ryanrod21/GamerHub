@@ -45,10 +45,6 @@ body {
   font-size: 16px;
 }
 
-.login-button {
-  margin-top: 20px;
-}
-
 .login-form button {
   padding: 12px;
   font-size: 16px;
@@ -62,20 +58,6 @@ body {
 
 .login-form button:hover {
   background-color: #555;
-}
-
-.forgotpassword-div {
-  margin: 5px 0;
-  text-align: center;
-}
-
-.forgotpassword-div a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.forgotpassword-div a:hover {
-  text-decoration: underline;
 }
 
 .newuser-div {
@@ -110,4 +92,8 @@ body {
 
 .back-home-button:hover {
   background-color: #e0e0e0;
+}
+
+.nav-content-wrapper {
+  margin: 0 20px 20px 0;
 }

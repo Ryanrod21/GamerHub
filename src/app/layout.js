@@ -25,7 +25,7 @@ import { usePathname } from 'next/navigation';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const hideLayoutOn = ['/login'];
+  const hideLayoutOn = ['/login', '/register'];
 
   const hideLayout = hideLayoutOn.includes(pathname);
   return (

@@ -63,6 +63,7 @@
 
 .message-recieved-container {
   background-color: #333;
+  border: 1px solid white;
   display: flex;
   width: 100%;
   justify-content: space-between;
