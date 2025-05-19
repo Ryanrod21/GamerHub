@@ -2,7 +2,6 @@
 
 import { Geist, Geist_Mono } from 'next/font/google';
 import Navbar from '@/sections/NavBar';
-import GameCat from '@/data/GameCat';
 import ProfileData from '@/data/ProfileData';
 import SideHero from '@/sections/SideHero';
 import '../app/games-list/games-list.css';

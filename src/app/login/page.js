@@ -1,18 +1,17 @@
 'use client';
 
+import { useState } from 'react';
+import { doSignInUserWithEmailAndPassword } from '@/firebase/auth';
+import { useAuth } from '@/context/authContext';
 import './login.css';
 
-// import { auth } from '../firebase';
-// import { signInWithEmailAndPassword } from 'firebase/auth';
-
 function Login() {
-  // signInWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     console.log('Logged in:', userCredential.user);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error logging in:', error);
-  //   });
+  const { userLoggedIn } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState('false');
+  const [errorMessage, setErrorMessage] = useState('');
 
   return (
     <div className="login-page">
