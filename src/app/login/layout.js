@@ -12,10 +12,8 @@ const geistMono = Geist_Mono({
 
 export default function LoginLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
+   <div className="login-wrapper">
+      {children}
+    </div>
   );
 }

@@ -1,6 +1,9 @@
 'use client';
+
 import './register.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { doCreateUserWithEmailAndPassword } from '@/firebase/auth';
+import { useRouter } from 'next/navigation';
 
 function Register() {
   const usernameRef = useRef();
@@ -9,22 +12,33 @@ function Register() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [error, setError] = useState('');
+  const [isCreating, setIsCreating] = useState(false);
+  const router = useRouter();
 
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      alert('Password do not match');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
       return;
     }
 
-    const data = {
-      username: usernameRef.current.value,
-      first: firstRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-
-    console.log(data);
+    setIsCreating(true);
+    try {
+      await doCreateUserWithEmailAndPassword(email, password);
+      
+      router.push('/'); 
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   return (
@@ -37,7 +51,7 @@ function Register() {
           <input
             id="username"
             type="text"
-            placeholder="Username "
+            placeholder="Username"
             ref={usernameRef}
           />
 
@@ -50,7 +64,12 @@ function Register() {
           />
 
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" placeholder="Email" ref={emailRef} />
+          <input
+            id="email"
+            type="text"
+            placeholder="Email"
+            ref={emailRef}
+          />
 
           <label htmlFor="password">Create Password</label>
           <input
@@ -60,15 +79,19 @@ function Register() {
             ref={passwordRef}
           />
 
-          <label htmlFor="password">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             id="confirmPassword"
             type="password"
-            placeholder="Password"
+            placeholder="Confirm Password"
             ref={confirmPasswordRef}
           />
 
-          <button type="submit">Create Account</button>
+          {error && <p className="error-message">{error}</p>}
+
+          <button type="submit" disabled={isCreating}>
+            {isCreating ? 'Creating...' : 'Create Account'}
+          </button>
 
           <button type="button" className="back-home-button">
             <a href="/login">← Sign In</a>
