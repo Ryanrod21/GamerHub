@@ -5,6 +5,7 @@ import Navbar from '@/sections/NavBar';
 import ProfileData from '@/data/ProfileData';
 import SideHero from '@/sections/SideHero';
 import '../app/games-list/games-list.css';
+import { AuthProvider } from '@/context/authContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className="page-wrapper">
           <div className="inner-wrapper">
+            <AuthProvider>
             {!hideLayout && <SideHero ProfileData={ProfileData} />}
             <div className="nav-content-wrapper">
               {!hideLayout && <Navbar />}
@@ -40,6 +42,7 @@ export default function RootLayout({ children }) {
               )}
               {hideLayout && <div>{children} </div>}
             </div>
+              </AuthProvider>
           </div>
         </div>
       </body>
