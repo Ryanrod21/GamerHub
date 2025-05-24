@@ -5,13 +5,15 @@ import { usePathname } from 'next/navigation';
 import '../app/App.css';
 import FriendsList from './FriendsList';
 import Logout from '../components/Logout';
-
+import { useAuth } from '@/context/authContext';
 import NotificationData from '../data/NotificationData';
 
 function SideHero({ ProfileData, notificationCount }) {
 
-  const pathname = usePathname()
+  const { user, userLoggedIn, loading } = useAuth();
 
+  const pathname = usePathname()
+  
   return (
     <div className="SideHero">
       <p className={pathname == '/' ? "active" : ""}>
@@ -32,9 +34,13 @@ function SideHero({ ProfileData, notificationCount }) {
         </a>
       </p>
 
-      <FriendsList ProfileData={ProfileData} />
+      {userLoggedIn && (
+        <>
+          <FriendsList ProfileData={ProfileData} />
+          <Logout />
+        </>
+      )}
 
-      <Logout />
     </div>
   );
 }

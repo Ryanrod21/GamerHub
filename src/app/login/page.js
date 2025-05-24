@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { doSignInUserWithEmailAndPassword } from '@/firebase/auth';
 import { useAuth } from '@/context/authContext';
 import { useRouter } from 'next/navigation';
@@ -30,10 +30,11 @@ function Login() {
     }
   };
 
-  if (userLoggedIn) {
-    router.push('/'); // Already logged in
-    return null;
-  }
+  useEffect(() => {
+    if (userLoggedIn) {
+      router.push('/');
+    }
+  }, [userLoggedIn, router]);
 
   return (
     <div className="login-page">
