@@ -9,23 +9,24 @@ import { useAuth } from '@/context/authContext';
 import NotificationData from '../data/NotificationData';
 
 function SideHero({ ProfileData, notificationCount }) {
-
   const { user, userLoggedIn, loading } = useAuth();
 
-  const pathname = usePathname()
-  
+  const pathname = usePathname();
+
   return (
     <div className="SideHero">
-      <p className={pathname == '/' ? "active" : ""}>
+      <p className={pathname == '/' ? 'active' : ''}>
         <a href="/">My Dashboard</a>
       </p>
-      <p className={pathname == '/games-list' ? "active" : ""}>
+      <p className={pathname == '/games-list' ? 'active' : ''}>
         <a href="/games-list">Game's List</a>
       </p>
-      <p className={pathname == '/friends-page' ? "active" : ""}>
-        <a href="/friends-page">Friends</a>
-      </p>
-      <p className={pathname == '/notification-page' ? "active" : ""}>
+      {userLoggedIn && (
+        <p className={pathname == '/friends-page' ? 'active' : ''}>
+          <a href="/friends-page">Friends</a>
+        </p>
+      )}
+      <p className={pathname == '/notification-page' ? 'active' : ''}>
         <a href="/notification-page">
           Notification
           {notificationCount > 0 && (
@@ -40,7 +41,6 @@ function SideHero({ ProfileData, notificationCount }) {
           <Logout />
         </>
       )}
-
     </div>
   );
 }
