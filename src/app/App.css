@@ -529,17 +529,68 @@ body {
   border-radius: 50%;
 }
 
-@media screen and (max-width: 1400px) {
+.SideHero.loggedOut {
+  justify-content: flex-start;
+  gap: 81px;
+}
+
+.SideHeroMobile {
+  display: none;
+  padding: 8px;
+  text-align: start;
+  background: rgb(51, 51, 51);
+  border-radius: 10px;
+  border: 1px solid black;
+  position: sticky;
+  box-shadow: 0 0 20px black;
+  z-index: 9;
+  margin: 20px 0 20px 20px;
+  justify-content: space-evenly;
+}
+
+.SideHeroMobile a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.SideHeroMobile p {
+  margin: 0;
+  text-align: center;
+  padding: 10px 0;
+  border: 1px solid #333;
+}
+
+.SideHeroMobile p.active {
+  background: #58a6ff;
+  border-radius: 10px;
+  border: 1px solid #58a6ff;
+}
+
+.SideHeroMobile p:not(.active):hover {
+  border: 1px solid #58a6ff;
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
   body {
-    background-color: red;
+    margin: 10px;
   }
-
-  .MainNews-SlideBtn h2 {
-    font-size: 1.1rem;
+  .SideHero {
+    display: none;
   }
-
-  .MainNews-SlideBtn p {
-    font-size: 0.7rem;
+  .Inner-MainHero {
+    flex-direction: column;
+  }
+  .SideHeroMobile {
+    display: flex;
+    margin: 0;
+  }
+  .GameHero {
+    width: 100%;
+  }
+  .GameHeroCard {
+    width: 410px;
   }
 }
 

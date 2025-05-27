@@ -8,13 +8,13 @@ import Logout from '../components/Logout';
 import { useAuth } from '@/context/authContext';
 import NotificationData from '../data/NotificationData';
 
-function SideHero({ ProfileData, notificationCount }) {
+function SideHeroMobile({ ProfileData, notificationCount }) {
   const { user, userLoggedIn, loading } = useAuth();
 
   const pathname = usePathname();
 
   return (
-    <div className={`SideHero ${userLoggedIn ? '' : 'loggedOut'}`}>
+    <div className={`SideHeroMobile ${userLoggedIn ? '' : 'loggedOut'}`}>
       <p className={pathname == '/' ? 'active' : ''}>
         <a href="/">My Dashboard</a>
       </p>
@@ -45,4 +45,4 @@ function SideHero({ ProfileData, notificationCount }) {
   );
 }
 
-export default SideHero;
+export default SideHeroMobile;

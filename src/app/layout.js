@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 // app/layout.js (App Router)
 
 import { usePathname } from 'next/navigation';
+import SideHeroMobile from '@/sections/SideHeroMobile';
 
 // Define routes where you want to hide layout components
 
@@ -34,15 +35,16 @@ export default function RootLayout({ children }) {
         <div className="page-wrapper">
           <div className="inner-wrapper">
             <AuthProvider>
-            {!hideLayout && <SideHero ProfileData={ProfileData} />}
-            <div className="nav-content-wrapper">
-              {!hideLayout && <Navbar />}
-              {!hideLayout && (
-                <div className="scrollable-content">{children}</div>
-              )}
-              {hideLayout && <div>{children} </div>}
-            </div>
-              </AuthProvider>
+              {!hideLayout && <SideHero ProfileData={ProfileData} />}
+              <div className="nav-content-wrapper">
+                {!hideLayout && <Navbar />}
+                <SideHeroMobile />
+                {!hideLayout && (
+                  <div className="scrollable-content">{children}</div>
+                )}
+                {hideLayout && <div>{children} </div>}
+              </div>
+            </AuthProvider>
           </div>
         </div>
       </body>
