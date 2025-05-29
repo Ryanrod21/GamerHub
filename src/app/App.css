@@ -592,6 +592,18 @@ body {
   .GameHeroCard {
     width: 410px;
   }
+
+  .FriendsListCard {
+    display: none;
+  }
+
+  .Logout {
+    margin-top: 0;
+  }
+
+  .SideHeroMobile a {
+    padding: 5px;
+  }
 }
 
 @media screen and (max-width: 790px) {

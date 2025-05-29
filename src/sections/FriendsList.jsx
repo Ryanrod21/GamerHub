@@ -2,9 +2,14 @@
 
 import { useState } from 'react';
 import FriendsCard from '../components/FriendsCard';
+
 import '../app/App.css';
 
+import { useAuth } from '@/context/authContext';
+
 function FriendsList({ ProfileData }) {
+  const { user, userLoggedIn, loading } = useAuth();
+
   const [showPopup, setPopup] = useState(false);
   const [inputValue, setInputValue] = useState('');
 

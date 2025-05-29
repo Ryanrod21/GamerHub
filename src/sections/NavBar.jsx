@@ -4,9 +4,7 @@ import SearchBar from '../components/SearchBar';
 import { useAuth } from '@/context/authContext';
 
 const Navbar = () => {
-
-const { user, userLoggedIn, loading } = useAuth();
-
+  const { user, userLoggedIn, loading } = useAuth();
 
   return (
     <nav className="navbar">
@@ -25,14 +23,13 @@ const { user, userLoggedIn, loading } = useAuth();
           <li>
             <a href="#">Contact</a>
           </li>
-          { userLoggedIn ? (
-            <li style={{fontWeight:"700"}}>{user.email}</li>
+          {userLoggedIn ? (
+            <li style={{ fontWeight: '700' }}>{user.email}</li>
           ) : (
-          <li>
-            <a href="/login">Login</a>
-          </li>
-          )
-          }
+            <li>
+              <a href="/login">Login</a>
+            </li>
+          )}
         </ul>
         <Dropdown />
       </div>

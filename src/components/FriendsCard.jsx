@@ -2,6 +2,7 @@
 
 import '../app/App.css';
 import { FaCircle } from 'react-icons/fa';
+import ProfileData from '@/data/ProfileData';
 
 function FriendsCard({ ProfileData }) {
   const StatusIcon = ({ color = 'green' }) => (

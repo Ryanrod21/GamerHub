@@ -4,6 +4,8 @@ import './register.css';
 import { useRef, useState } from 'react';
 import { doCreateUserWithEmailAndPassword } from '@/firebase/auth';
 import { useRouter } from 'next/navigation';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
 
 function Register() {
   const usernameRef = useRef();
@@ -20,6 +22,7 @@ function Register() {
     e.preventDefault();
     setError('');
 
+    const username = usernameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
@@ -31,9 +34,19 @@ function Register() {
 
     setIsCreating(true);
     try {
-      await doCreateUserWithEmailAndPassword(email, password);
-      
-      router.push('/'); 
+      const userCredential = await doCreateUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      await setDoc(doc(db, 'users', user.uid), {
+        username,
+        firstname,
+        email: user.email,
+      });
+
+      router.push('/');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -64,12 +77,7 @@ function Register() {
           />
 
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="text"
-            placeholder="Email"
-            ref={emailRef}
-          />
+          <input id="email" type="text" placeholder="Email" ref={emailRef} />
 
           <label htmlFor="password">Create Password</label>
           <input

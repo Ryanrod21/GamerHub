@@ -2,10 +2,10 @@
 
 import { Geist, Geist_Mono } from 'next/font/google';
 import Navbar from '@/sections/NavBar';
-import ProfileData from '@/data/ProfileData';
 import SideHero from '@/sections/SideHero';
 import '../app/games-list/games-list.css';
 import { AuthProvider } from '@/context/authContext';
+import ProfileData from '@/data/ProfileData';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
               {!hideLayout && <SideHero ProfileData={ProfileData} />}
               <div className="nav-content-wrapper">
                 {!hideLayout && <Navbar />}
-                <SideHeroMobile />
+                <SideHeroMobile ProfileData={ProfileData} />
                 {!hideLayout && (
                   <div className="scrollable-content">{children}</div>
                 )}
