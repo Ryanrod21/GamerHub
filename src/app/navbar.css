@@ -24,7 +24,7 @@
 }
 
 .nav-links li a {
-  color:white;
+  color: white;
   font-weight: 700;
 }
 
@@ -51,12 +51,9 @@
   text-decoration: none;
 }
 
-
 .nav-links a:active {
   color: orange;
 }
-
-
 
 .dropdown {
   position: relative;
@@ -108,6 +105,10 @@
   cursor: pointer;
 }
 
+.searchbar-mag {
+  display: none;
+}
+
 .theme-red {
   background-color: red;
 }
@@ -126,4 +127,34 @@
 .theme-dark {
   background-color: black;
   color: white;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    justify-content: space-evenly;
+  }
+
+  .navbar ul {
+    padding-left: 20px;
+  }
+
+  .navbar h2 {
+    font-size: 15px;
+  }
+
+  .search-bar input {
+    width: 100px;
+  }
+
+  .search-bar button {
+    display: none;
+  }
+
+  .searchbar-mag {
+    display: block;
+    background-color: #58a6ff;
+    width: 20px;
+    padding: 5px;
+    border-radius: 4px;
+  }
 }

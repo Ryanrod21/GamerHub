@@ -37,7 +37,6 @@ function SideHeroMobile({ ProfileData, notificationCount }) {
 
       {userLoggedIn && (
         <>
-          <FriendsList ProfileData={ProfileData} />
           <Logout />
         </>
       )}

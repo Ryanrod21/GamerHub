@@ -63,7 +63,6 @@
 }
 
 .friends-body .FriendsCardWrapper {
-  border: 1px solid black;
   width: 100%;
 }
 
@@ -78,16 +77,16 @@
 .friends-body .FriendsCard {
   gap: 40px;
   width: 100%;
-  justify-content: space-between;
 }
 
 .friends-body .FriendsOfflineCard {
   gap: 40px;
+  justify-content: flex-start;
 }
 
-.friends-body .OfflineCardWrapper {
+/* .friends-body .OfflineCardWrapper {
   border: 1px solid red;
-}
+} */
 
 .friends-body .ProfileImg {
   width: 170px;

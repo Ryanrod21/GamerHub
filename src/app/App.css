@@ -255,6 +255,8 @@ body {
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  width: 100%;
+  justify-content: center;
 }
 
 .FriendsCardWrapper,
@@ -572,6 +574,12 @@ body {
   border-radius: 10px;
 }
 
+.main-left-right-btn {
+  display: flex;
+  gap: 40px;
+  padding-top: 20px;
+}
+
 @media (max-width: 1200px) {
   body {
     margin: 10px;
@@ -579,6 +587,7 @@ body {
   .SideHero {
     display: none;
   }
+
   .Inner-MainHero {
     flex-direction: column;
   }
@@ -586,14 +595,15 @@ body {
     display: flex;
     margin: 0;
   }
+
   .GameHero {
     width: 100%;
   }
   .GameHeroCard {
-    width: 410px;
+    width: 364px;
   }
 
-  .FriendsListCard {
+  .SideHeroMobile .FriendsListCard {
     display: none;
   }
 
@@ -604,14 +614,86 @@ body {
   .SideHeroMobile a {
     padding: 5px;
   }
+
+  .MainNews-SlideBtn {
+    /* width: 220px; */
+    padding: 10px;
+    height: 150px;
+    top: 60%;
+  }
+
+  .main-left-right-btn {
+    padding-top: 5px;
+  }
+
+  .MainNews button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .MainNews-SlideBtn h2 {
+    font-size: 15px;
+  }
+
+  .MainNews-SlideBtn p {
+    font-size: 13px;
+  }
 }
 
-@media screen and (max-width: 790px) {
+@media screen and (max-width: 900px) {
   body {
     background-color: blue;
   }
 
+  .MainNews-SlideBtn {
+    padding: 10px;
+    height: 110px;
+  }
+
+  .MainNews button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .MainNews-SlideBtn h2 {
+    font-size: 13px;
+  }
+
+  .MainNews-SlideBtn p {
+    font-size: 11px;
+  }
+
+  .main-left-right-btn {
+    padding-top: 0;
+  }
+
   .GameHeroCard {
     width: 300px;
+  }
+
+  .logo-search-bar {
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  body {
+    background-color: red;
+  }
+
+  .MainNews-SlideBtn {
+    width: 120px;
+  }
+
+  .MainNews-SlideBtn h2 {
+    font-size: 10px;
+  }
+
+  .MainNews-SlideBtn p {
+    font-size: 8px;
+  }
+
+  .main-left-right-btn {
+    padding-top: 0;
   }
 }

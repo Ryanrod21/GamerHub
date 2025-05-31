@@ -29,7 +29,7 @@ function ImageSlider({ GameNews }) {
       <div className="MainNews-SlideBtn">
         <h2>{GameNews[currentImage].title}</h2>
         <p>{GameNews[currentImage].details}</p>
-        <div style={{ display: 'flex', gap: '40px', paddingTop: '20px' }}>
+        <div className="main-left-right-btn">
           <button onClick={goPrevious}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>

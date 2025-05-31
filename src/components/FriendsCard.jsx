@@ -43,8 +43,8 @@ function FriendsCard({ ProfileData }) {
                   })}
                 </ul>
               </div>
+              <StatusIcon color="green" />
             </div>
-            <StatusIcon color="green" />
           </div>
         );
       } else if (profile.status !== 'online' && profile.isFriend) {
@@ -54,8 +54,8 @@ function FriendsCard({ ProfileData }) {
               <img className="ProfileImgOffline" src={profile.img} />
               <span className="ProfileHoverOffline">{profile.name} </span>
               <div className="Profile-popupOffline">{profile.offline}</div>
+              <StatusIcon color="red" />
             </div>
-            <StatusIcon color="red" />
           </div>
         );
       }

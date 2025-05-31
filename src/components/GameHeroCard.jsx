@@ -15,13 +15,19 @@ function GameHeroCard({ GameData }) {
     pauseonHover: true,
     responsive: [
       {
-        breakpoint: 1100,
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 990,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 680,
         settings: {
           slidesToShow: 1,
         },

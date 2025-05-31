@@ -26,12 +26,14 @@ export default function NotficationComponent() {
 
   return (
     <div>
-      <div className="notificationLogout">
-        <h1>Login to receieve message from other users and news !</h1>
-        <p className="login-btn">
-          <a href="/login">Login</a>
-        </p>
-      </div>
+      {!userLoggedIn && (
+        <div className="notificationLogout">
+          <h1>Login to receieve message from other users and news !</h1>
+          <p className="login-btn">
+            <a href="/login">Login</a>
+          </p>
+        </div>
+      )}
 
       {userLoggedIn && (
         <div className="message-hero">
