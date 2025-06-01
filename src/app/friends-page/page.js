@@ -26,11 +26,11 @@ const FriendsPage = () => {
   return (
     <div>
       <div className="friends-page">
-       
         <div className="friends-container">
-         
           <div className="friends-head">
             <h1>Search for Friends</h1>
+            <h1 className="text-4xl font-bold text-red-600">Tailwind works!</h1>
+
             <div className="friends-search">
               <SearchFriends
                 searchTerm={searchTerm}

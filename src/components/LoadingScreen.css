@@ -1,0 +1,34 @@
+.loadingScreen-container {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingScreen-container h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.loading-circle {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #00ffff;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

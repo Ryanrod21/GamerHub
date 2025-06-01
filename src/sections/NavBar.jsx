@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import { useAuth } from '@/context/authContext';
 
 const Navbar = () => {
-  const { user, userLoggedIn, loading } = useAuth();
+  const { user, userData, userLoggedIn, loading } = useAuth();
 
   return (
     <nav className="navbar">
@@ -24,7 +24,7 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           {userLoggedIn ? (
-            <li style={{ fontWeight: '700' }}>{user.email}</li>
+            <li style={{ fontWeight: '700' }}>{userData.username}</li>
           ) : (
             <li>
               <a href="/login">Login</a>

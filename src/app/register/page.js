@@ -23,6 +23,7 @@ function Register() {
     setError('');
 
     const username = usernameRef.current.value;
+    const firstname = firstRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
@@ -46,8 +47,11 @@ function Register() {
         email: user.email,
       });
 
+      console.log('user saved!');
+
       router.push('/');
     } catch (err) {
+      console.error('Firestore Error', err);
       setError(err.message);
     } finally {
       setIsCreating(false);
