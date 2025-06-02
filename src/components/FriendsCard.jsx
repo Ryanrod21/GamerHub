@@ -2,7 +2,7 @@
 
 import '../app/App.css';
 import { FaCircle } from 'react-icons/fa';
-import ProfileData from '@/data/ProfileData';
+import { useState } from 'react';
 
 function FriendsCard({ ProfileData }) {
   const StatusIcon = ({ color = 'green' }) => (
@@ -77,8 +77,35 @@ function FriendsCard({ ProfileData }) {
       }
       // return null; // Ensure the function always returns something (or null if not rendering anything)
     });
+
+  const [showPopup, setPopup] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const togglePopup = () => setPopup(!showPopup);
+
+  const handleInputChange = (e) => setInputValue(e.target.value);
+
   return (
     <div className="FriendsListCard">
+      <div className="FriendsPanel">
+        <div className="OnlinePlus">
+          <p>Friends List</p>
+          <span className="addBtn" onClick={togglePopup}>
+            +
+          </span>
+        </div>
+
+        {showPopup && (
+          <div className="popup-box">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Add Friend"
+            />
+          </div>
+        )}
+      </div>
       {RenderedFriendsOnline}
       <p>Recommend:</p>
       {RenderedRecommendFriends}

@@ -129,6 +129,41 @@
   color: white;
 }
 
+.account-username {
+  position: relative;
+}
+
+.account-username-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  color: black;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  list-style: none;
+}
+
+.account-username-dropdown li a {
+  color: black;
+}
+
+.account-username-dropdown li {
+  border: 1px solid black;
+  padding: 10px 0;
+}
+
+.account-username-dropdown li::after {
+  display: none;
+}
+
+.account-username:hover .account-username-dropdown {
+  display: block;
+  /* margin: 5px 0 0 0; */
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .navbar {
     justify-content: space-evenly;

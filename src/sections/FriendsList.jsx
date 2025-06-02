@@ -10,34 +10,8 @@ import { useAuth } from '@/context/authContext';
 function FriendsList({ ProfileData }) {
   const { user, userLoggedIn, loading } = useAuth();
 
-  const [showPopup, setPopup] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-
-  const togglePopup = () => setPopup(!showPopup);
-
-  const handleInputChange = (e) => setInputValue(e.target.value);
-
   return (
     <>
-      <div className="FriendsPanel">
-        <div className="OnlinePlus">
-          <p>Friends List</p>
-          <span className="addBtn" onClick={togglePopup}>
-            +
-          </span>
-        </div>
-
-        {showPopup && (
-          <div className="popup-box">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Add Friend"
-            />
-          </div>
-        )}
-      </div>
       <FriendsCard ProfileData={ProfileData} />
     </>
   );

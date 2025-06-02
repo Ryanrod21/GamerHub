@@ -2,9 +2,21 @@ import '../app/navbar.css';
 import Dropdown from '../components/NavDropdown';
 import SearchBar from '../components/SearchBar';
 import { useAuth } from '@/context/authContext';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const { user, userData, userLoggedIn, loading } = useAuth();
+
+  const pathname = usePathname();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push('/login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -24,7 +36,17 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           {userLoggedIn ? (
-            <li style={{ fontWeight: '700' }}>{userData.username}</li>
+            <li className="account-username" style={{ fontWeight: '700' }}>
+              <a href="/account">{userData.username}</a>
+              <ul className="account-username-dropdown">
+                <li>
+                  <a href="/account">Account</a>
+                </li>
+                <li>
+                  <a onClick={handleLogout}>Sign Out</a>
+                </li>
+              </ul>
+            </li>
           ) : (
             <li>
               <a href="/login">Login</a>

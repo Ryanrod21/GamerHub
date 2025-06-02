@@ -3,7 +3,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase';
 import LoadingScreen from '@/components/LoadingScreen';
 
@@ -46,6 +46,19 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // ✅ Add this function to update Firestore and local state
+  const updateUserData = async (newData) => {
+    if (!user) return;
+
+    try {
+      const userRef = doc(db, 'users', user.uid);
+      await updateDoc(userRef, newData); // Update Firestore
+      setUserData((prev) => ({ ...prev, ...newData })); // Update local state
+    } catch (error) {
+      console.error('Failed to update user data:', error);
+    }
+  };
+
   if (loading) {
     return <LoadingScreen />;
   }
@@ -57,6 +70,7 @@ export const AuthProvider = ({ children }) => {
         userData,
         userLoggedIn: !!user,
         loading,
+        updateUserData,
       }}
     >
       {!loading && children}
