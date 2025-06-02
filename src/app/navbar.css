@@ -67,6 +67,10 @@
   padding-right: 20px;
 }
 
+.nav-link-dropdown ul {
+  padding: 0 40px 0 0;
+}
+
 .dropdown-menu {
   position: absolute;
   color: black;
@@ -158,23 +162,22 @@
 
 .account-username:hover .account-username-dropdown {
   display: block;
-  /* margin: 5px 0 0 0; */
   padding: 0;
-  width: 100%;
+  width: 80px;
   text-align: center;
+  margin-top: 4px;
 }
 
 @media (max-width: 900px) {
-  .navbar {
-    justify-content: space-evenly;
-  }
-
   .navbar ul {
     padding-left: 20px;
   }
 
   .navbar h2 {
     font-size: 15px;
+  }
+
+  .dropdown-toggle {
   }
 
   .search-bar input {
@@ -191,5 +194,41 @@
     width: 20px;
     padding: 5px;
     border-radius: 4px;
+  }
+  .nav-link-dropdown ul {
+    padding: 0 10px 0 0;
+  }
+}
+@media (max-width: 690px) {
+  .dropdown-toggle {
+    width: 20px;
+    height: 20px;
+    padding: 1px 0;
+  }
+
+  .dropdown-toggle svg {
+    width: 12px;
+  }
+
+  .search-bar input::placeholder {
+    font-size: 7px;
+  }
+
+  .search-bar input {
+    width: 50px;
+    height: 6px;
+  }
+
+  .searchbar-mag {
+    display: block;
+    background-color: #58a6ff;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  .nav-link-dropdown ul {
+    padding: 0;
   }
 }
