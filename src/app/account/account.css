@@ -4,14 +4,6 @@
   align-items: center;
 }
 
-.acct-img {
-  width: 150px;
-  height: 150px;
-  background-color: white;
-  border-radius: 50%;
-  margin-top: 20px;
-}
-
 .account-page h1 {
   color: white;
   font-size: 50px;
@@ -19,7 +11,35 @@
 
 .account-info {
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  flex-direction: column;
+  width: 97%;
+  justify-content: start;
   color: white;
+  padding-left: 40px;
+  gap: 30px;
+}
+
+.account-details {
+  display: flex;
+  justify-content: start;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.account-details h1 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.account-details h3 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+  margin-top: 20px;
 }

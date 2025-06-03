@@ -45,6 +45,7 @@ function Register() {
         username,
         firstname,
         email: user.email,
+        profilePic: '/acctdefault.jpg',
       });
 
       console.log('user saved!');

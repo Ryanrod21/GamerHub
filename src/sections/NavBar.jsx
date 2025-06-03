@@ -36,17 +36,24 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           {userLoggedIn ? (
-            <li className="account-username" style={{ fontWeight: '700' }}>
-              <a href="/account">{userData.username}</a>
-              <ul className="account-username-dropdown">
-                <li>
-                  <a href="/account">Account</a>
-                </li>
-                <li>
-                  <a onClick={handleLogout}>Sign Out</a>
-                </li>
-              </ul>
-            </li>
+            <>
+              <li className="account-username" style={{ fontWeight: '700' }}>
+                <img
+                  src={userData?.profilePic || '/acctdefault.jpg'}
+                  alt="Profile Pic"
+                  className="navbar-profile-img"
+                />
+                <a href="/account">{userData.username}</a>
+                <ul className="account-username-dropdown">
+                  <li>
+                    <a href="/account">Account</a>
+                  </li>
+                  <li>
+                    <a onClick={handleLogout}>Sign Out</a>
+                  </li>
+                </ul>
+              </li>
+            </>
           ) : (
             <li>
               <a href="/login">Login</a>

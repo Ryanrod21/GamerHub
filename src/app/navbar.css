@@ -21,6 +21,7 @@
   list-style: none;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .nav-links li a {
@@ -134,7 +135,9 @@
 }
 
 .account-username {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .account-username-dropdown {
@@ -166,6 +169,13 @@
   width: 80px;
   text-align: center;
   margin-top: 4px;
+}
+
+.navbar-profile-img {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 @media (max-width: 900px) {
