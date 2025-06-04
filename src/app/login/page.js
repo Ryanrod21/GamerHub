@@ -31,7 +31,8 @@ function Login() {
   };
 
   useEffect(() => {
-    if (userLoggedIn) {
+
+    if (userLoggedIn === true) {
       router.push('/');
     }
   }, [userLoggedIn, router]);

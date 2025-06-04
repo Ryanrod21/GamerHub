@@ -2,20 +2,22 @@
 
 import { useAuth } from '@/context/authContext';
 import './account.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Account() {
   const { user, userData, userLoggedIn, loading, updateUserData } = useAuth();
 
-  const [username, setUsername] = useState(userData.username);
-  const [firstname, setFirstname] = useState(userData.firstname);
-  const [accountPic, setAccountPic] = useState(userData.accountPic);
+  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [accountPic, setAccountPic] = useState("");
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
-  const [password, setPassword] = useState(user.password);
+  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState('');
   const [editing, setEditing] = useState(false);
   const [editField, setEditField] = useState(null);
+
+
 
   // Call an update function (you'd need this in your useAuth hook)
   const handleSave = async () => {
@@ -28,6 +30,25 @@ function Account() {
       // Optionally: show a message to the user
     }
   };
+
+
+
+  // I put this here along with the useEffect to load this until we have the data
+  // Putting the userData above in the useState immediately looks for the data when the page loads and doesn't give it time to fetch
+  // from firebase and that crashes the app if the data isn't immmdiately avaialable 
+
+    if (loading || !userData) {
+    return <div>Loading account info...</div>; 
+  }
+
+  // 
+  useEffect(() => {
+    setUsername(userData.username || '');
+    setFirstname(userData.firstname || '');
+    setAccountPic(userData.accountPic || '');
+    setPassword(user?.password || '');
+    
+  }, [userData, user]);
 
   return (
     <div className="account-page">
