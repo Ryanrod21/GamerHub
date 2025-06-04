@@ -33,6 +33,18 @@ function Account() {
 
 
 
+  
+
+   
+  useEffect(() => {
+    if (!userData) return;
+    setUsername(userData.username || '');
+    setFirstname(userData.firstname || '');
+    setAccountPic(userData.accountPic || '');
+    setPassword(user?.password || '');
+    
+  }, [userData, user]);
+
   // I put this here along with the useEffect to load this until we have the data
   // Putting the userData above in the useState immediately looks for the data when the page loads and doesn't give it time to fetch
   // from firebase and that crashes the app if the data isn't immmdiately avaialable 
@@ -40,15 +52,6 @@ function Account() {
     if (loading || !userData) {
     return <div>Loading account info...</div>; 
   }
-
-  // 
-  useEffect(() => {
-    setUsername(userData.username || '');
-    setFirstname(userData.firstname || '');
-    setAccountPic(userData.accountPic || '');
-    setPassword(user?.password || '');
-    
-  }, [userData, user]);
 
   return (
     <div className="account-page">
