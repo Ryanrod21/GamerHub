@@ -22,7 +22,7 @@ function Login() {
 
     try {
       await doSignInUserWithEmailAndPassword(email, password);
-      router.push('/'); 
+      router.push('/');
     } catch (error) {
       setErrorMessage(error.message);
     } finally {

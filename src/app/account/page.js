@@ -10,8 +10,10 @@ function Account() {
   const [username, setUsername] = useState(userData.username);
   const [firstname, setFirstname] = useState(userData.firstname);
   const [accountPic, setAccountPic] = useState(userData.accountPic);
-  const [email, setEmail] = useState(userData.email);
+  const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
+  const [password, setPassword] = useState(user.password);
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [editing, setEditing] = useState(false);
   const [editField, setEditField] = useState(null);
 
@@ -66,6 +68,9 @@ function Account() {
           </button>
           <button onClick={() => setEditField('firstname')}>Edit Name</button>
           <button onClick={() => setEditField('email')}>Edit Email</button>
+          <button onClick={() => setEditField('password')}>
+            Edit Password
+          </button>
           <button onClick={() => setEditing(false)}>Cancel</button>
         </div>
       )}
@@ -124,6 +129,37 @@ function Account() {
           {email !== confirmEmail && confirmEmail && (
             <p className="error-message" style={{ color: 'red' }}>
               Emails do not match.
+            </p>
+          )}
+        </div>
+      )}
+
+      {editField === 'password' && (
+        <div className="edit-section">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="New password"
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm new password"
+          />
+          <div className="edit-buttons">
+            <button
+              onClick={handleSave}
+              disabled={password !== confirmPassword || password.trim() === ''}
+            >
+              Save
+            </button>
+            <button onClick={() => setEditField(null)}>Cancel</button>
+          </div>
+          {password !== confirmPassword && confirmPassword && (
+            <p className="error-message" style={{ color: 'red' }}>
+              Passwords do not match.
             </p>
           )}
         </div>

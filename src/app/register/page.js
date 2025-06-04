@@ -52,7 +52,7 @@ function Register() {
 
       router.push('/');
     } catch (err) {
-      console.error('Firestore Error', err);
+      console.error('Firestore Error ', err);
       setError(err.message);
     } finally {
       setIsCreating(false);

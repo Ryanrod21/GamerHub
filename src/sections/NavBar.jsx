@@ -1,13 +1,16 @@
+'use client';
 import '../app/navbar.css';
 import Dropdown from '../components/NavDropdown';
 import SearchBar from '../components/SearchBar';
 import { useAuth } from '@/context/authContext';
-import { usePathname } from 'next/navigation';
+import { auth } from '@/firebase/firebase';
+import { signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const { user, userData, userLoggedIn, loading } = useAuth();
 
-  const pathname = usePathname();
+  const router = useRouter();
 
   const handleLogout = async () => {
     try {
@@ -35,7 +38,7 @@ const Navbar = () => {
           <li>
             <a href="#">Contact</a>
           </li>
-          {userLoggedIn ? (
+          {userLoggedIn && userData ? (
             <>
               <li className="account-username" style={{ fontWeight: '700' }}>
                 <img
@@ -48,8 +51,8 @@ const Navbar = () => {
                   <li>
                     <a href="/account">Account</a>
                   </li>
-                  <li>
-                    <a onClick={handleLogout}>Sign Out</a>
+                  <li onClick={handleLogout} className="logout-nav">
+                    Sign Out
                   </li>
                 </ul>
               </li>

@@ -178,6 +178,10 @@
   border-radius: 50%;
 }
 
+.logout-nav {
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
   .navbar ul {
     padding-left: 20px;
