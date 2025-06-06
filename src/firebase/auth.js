@@ -3,6 +3,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  updateEmail,
   updatePassword,
 } from 'firebase/auth';
 import { auth } from './firebase';
@@ -23,9 +24,13 @@ export const doSignOut = () => {
 //   return sendPasswordResetEmail(auth, email);
 // };
 
-// export const doPasswordChange = (password) => {
-//   return updatePassword(auth.currentUser, password);
-// };
+export const doEmailchange = (email) => {
+  return updateEmail(auth.currentUser, email);
+};
+
+export const doPasswordChange = (password) => {
+  return updatePassword(auth.currentUser, password);
+};
 
 // export const doSendEmailVerification = () => {
 //   return sendEmailVerification(auth.currentUser, {

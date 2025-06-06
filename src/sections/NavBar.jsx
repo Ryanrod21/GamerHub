@@ -24,7 +24,8 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo-search-bar">
-        <h2 className="Logo">TheGamerHub</h2>
+        <h2 className="Logo">TheGameHub</h2>
+        {/* <img src="/GHload.png" style={{ width: '100px', height: '100px' }} /> */}
         <SearchBar />
       </div>
       <div className="nav-link-dropdown">
