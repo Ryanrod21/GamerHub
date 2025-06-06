@@ -5,6 +5,7 @@ import './account.css';
 import { useEffect, useState } from 'react';
 import { doPasswordChange, doEmailchange } from '@/firebase/auth';
 import { useRouter } from 'next/navigation';
+import AccountPicSelector from '@/data/AccountPic';
 
 function Account() {
   const { user, userData, userLoggedIn, loading, updateUserData } = useAuth();
@@ -91,9 +92,18 @@ function Account() {
             </button>
           </div>
         )}
+
+        {/* Show image selection if editField === 'accountPic' */}
+        {editField === 'accountPic' && (
+          <AccountPicSelector
+            onSelect={(selectedPic) => {
+              setEditField(null);
+              updateUserData({ ...userData, profilePic: selectedPic }); // save it
+            }}
+          />
+        )}
       </div>
 
-      {/* Username Display (always visible) */}
       <div className="username-display-section">
         <h1>{userData.username}</h1>
         {editing && !editField && (
@@ -104,6 +114,28 @@ function Account() {
             >
               Edit Username
             </button>
+          </div>
+        )}
+
+        {editField === 'username' && (
+          <div className="edit-section">
+            <input
+              className="edit-buttons"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Edit username"
+            />
+            <div>
+              <button className="edit-buttons" onClick={handleSave}>
+                Save
+              </button>
+              <button
+                className="edit-buttons"
+                onClick={() => setEditField(null)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -127,7 +159,7 @@ function Account() {
         <div className="account-details">
           <h1>Email: </h1>
           <h3>{user.email}</h3>
-          {editing && !editField && (
+          {/* {editing && !editField && (
             <div>
               <button
                 className="edit-buttons"
@@ -136,7 +168,7 @@ function Account() {
                 Edit Email
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -151,7 +183,7 @@ function Account() {
       {/* Editing Section - placed separately */}
 
       {editing && !editField && (
-        <div>
+        <div className="password-cancel-btn">
           <button
             className="edit-buttons"
             onClick={() => setEditField('password')}
@@ -169,25 +201,6 @@ function Account() {
           <input
             className="edit-buttons"
             value={accountPic}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Edit username"
-          />
-          <div>
-            <button className="edit-buttons" onClick={handleSave}>
-              Save
-            </button>
-            <button className="edit-buttons" onClick={() => setEditField(null)}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
-
-      {editField === 'username' && (
-        <div className="edit-section">
-          <input
-            className="edit-buttons"
-            value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Edit username"
           />

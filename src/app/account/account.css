@@ -59,3 +59,36 @@
   background-color: #58a6ff;
   cursor: pointer;
 }
+
+.acct-img {
+  justify-items: center;
+}
+
+.username-display-section {
+  justify-items: center;
+}
+
+.password-cancel-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.pic-selector {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.pic-option {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.pic-option:hover {
+  transform: scale(1.1);
+}
