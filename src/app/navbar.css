@@ -176,6 +176,7 @@
   height: 35px;
   background-color: white;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .logout-nav {

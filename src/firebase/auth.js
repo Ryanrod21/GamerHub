@@ -12,7 +12,11 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const doSignInUserWithEmailAndPassword = async (email, password) => {
+export const doSignInUserWithEmailAndPassword = async (
+  auth,
+  email,
+  password
+) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 

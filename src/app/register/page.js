@@ -4,7 +4,14 @@ import './register.css';
 import { useRef, useState } from 'react';
 import { doCreateUserWithEmailAndPassword } from '@/firebase/auth';
 import { useRouter } from 'next/navigation';
-import { doc, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDocs,
+  setDoc,
+  query,
+  where,
+  collection,
+} from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 
 function Register() {
@@ -22,11 +29,21 @@ function Register() {
     e.preventDefault();
     setError('');
 
-    const username = usernameRef.current.value;
-    const firstname = firstRef.current.value;
-    const email = emailRef.current.value;
+    const username = usernameRef.current.value.trim();
+    const firstname = firstRef.current.value.trim();
+    const email = emailRef.current.value.trim();
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
+
+    if (username.length > 20) {
+      setError('Username cannot be more than 20 characters');
+      return;
+    }
+
+    if (username.length < 3) {
+      setError('Username must be at least 3 characters long');
+      return;
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -35,6 +52,18 @@ function Register() {
 
     setIsCreating(true);
     try {
+      const usernameQuery = query(
+        collection(db, 'users'),
+        where('username', '==', username)
+      );
+
+      const querySnapshot = await getDocs(usernameQuery);
+
+      if (!querySnapshot.empty) {
+        setError('Username already taken');
+        return;
+      }
+
       const userCredential = await doCreateUserWithEmailAndPassword(
         email,
         password
@@ -46,6 +75,9 @@ function Register() {
         firstname,
         email: user.email,
         profilePic: '/acctdefault.jpg',
+        status: 'Offline',
+        games,
+        isFriend: false,
       });
 
       console.log('user saved!');
@@ -71,6 +103,7 @@ function Register() {
             type="text"
             placeholder="Username"
             ref={usernameRef}
+            maxLength={20}
           />
 
           <label htmlFor="firstName">First Name</label>

@@ -1,17 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { doSignInUserWithEmailAndPassword } from '@/firebase/auth';
 import { useAuth } from '@/context/authContext';
 import { useRouter } from 'next/navigation';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db, auth } from '@/firebase/firebase';
+
 import './login.css';
 
 function Login() {
   const router = useRouter();
   const { userLoggedIn } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const loginIdRef = useRef();
+  const passwordRef = useRef();
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -20,8 +23,33 @@ function Login() {
     setIsSigningIn(true);
     setErrorMessage('');
 
+    const loginId = loginIdRef.current.value;
+    const password = passwordRef.current.value;
+
     try {
-      await doSignInUserWithEmailAndPassword(email, password);
+      let emailToUse = loginId;
+
+      // If it's not an email, look up username
+      if (!loginId.includes('@')) {
+        const usersRef = collection(db, 'users');
+        const q = query(usersRef, where('username', '==', loginId));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          setErrorMessage('Username not found');
+          console.log('username', loginId);
+          return;
+        }
+
+        emailToUse = querySnapshot.docs[0].data().email;
+
+        if (!emailToUse.includes('@')) {
+          setErrorMessage('Could not resolve username to valid email');
+          return;
+        }
+      }
+
+      await doSignInUserWithEmailAndPassword(auth, emailToUse, password);
       router.push('/');
     } catch (error) {
       setErrorMessage(error.message);
@@ -31,7 +59,6 @@ function Login() {
   };
 
   useEffect(() => {
-
     if (userLoggedIn === true) {
       router.push('/');
     }
@@ -43,22 +70,15 @@ function Login() {
         <h1>The Gamer Hub</h1>
         <h1>Login</h1>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <label htmlFor="email">Username/Email</label>
+          <input id="email" type="text" placeholder="Email" ref={loginIdRef} />
 
           <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            ref={passwordRef}
           />
 
           <div className="forgotpassword-div">

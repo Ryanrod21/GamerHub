@@ -20,6 +20,7 @@ function Account() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [editing, setEditing] = useState(false);
   const [editField, setEditField] = useState(null);
+  const [status, setStatus] = useState('Offline');
 
   useEffect(() => {
     if (!loading && !userLoggedIn) {
@@ -32,6 +33,7 @@ function Account() {
       setUsername(userData.username || '');
       setFirstname(userData.firstname || '');
       setAccountPic(userData.accountPic || '');
+      setStatus(userData.status || '');
     }
 
     if (user) {
@@ -55,6 +57,7 @@ function Account() {
           firstname,
           email,
           accountPic,
+          status,
         });
       }
 
@@ -93,14 +96,22 @@ function Account() {
           </div>
         )}
 
+        <h1>{userData.status}</h1>
+
         {/* Show image selection if editField === 'accountPic' */}
         {editField === 'accountPic' && (
-          <AccountPicSelector
-            onSelect={(selectedPic) => {
-              setEditField(null);
-              updateUserData({ ...userData, profilePic: selectedPic }); // save it
-            }}
-          />
+          <>
+            <AccountPicSelector
+              value={accountPic}
+              onSelect={(selectedPic) => {
+                setEditField(null);
+                updateUserData({ ...userData, profilePic: selectedPic }); // save it
+              }}
+            />
+            <button className="edit-buttons" onClick={() => setEditField(null)}>
+              Cancel
+            </button>
+          </>
         )}
       </div>
 
@@ -193,25 +204,6 @@ function Account() {
           <button className="edit-buttons" onClick={() => setEditing(false)}>
             Cancel
           </button>
-        </div>
-      )}
-
-      {editField === 'accountPic' && (
-        <div className="edit-section">
-          <input
-            className="edit-buttons"
-            value={accountPic}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Edit username"
-          />
-          <div>
-            <button className="edit-buttons" onClick={handleSave}>
-              Save
-            </button>
-            <button className="edit-buttons" onClick={() => setEditField(null)}>
-              Cancel
-            </button>
-          </div>
         </div>
       )}
 
