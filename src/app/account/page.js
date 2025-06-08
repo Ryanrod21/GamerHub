@@ -54,6 +54,7 @@ function Account() {
       } else {
         await updateUserData({
           username,
+          username_lowercase: username.toLowerCase(),
           firstname,
           email,
           accountPic,

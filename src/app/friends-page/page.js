@@ -36,9 +36,9 @@ const FriendsPage = () => {
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
               />
-              <button>
+              {/* <button>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-              </button>
+              </button> */}
             </div>
           </div>
           <div>

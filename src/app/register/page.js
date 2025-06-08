@@ -72,12 +72,10 @@ function Register() {
 
       await setDoc(doc(db, 'users', user.uid), {
         username,
+        username_lowercase: username.toLowerCase(),
         firstname,
         email: user.email,
         profilePic: '/acctdefault.jpg',
-        status: 'Offline',
-        games,
-        isFriend: false,
       });
 
       console.log('user saved!');
