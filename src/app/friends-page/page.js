@@ -6,7 +6,6 @@ import './friends-page.css';
 import FriendsCard from '@/components/FriendsCard';
 import { useState } from 'react';
 import SearchFriends from '@/components/SearchFriends';
-import ProfileList from '@/components/ProfileList';
 
 const FriendsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,13 +29,7 @@ const FriendsPage = () => {
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
               />
-              {/* <button>
-                <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-              </button> */}
             </div>
-          </div>
-          <div>
-            <ProfileList profiles={filteredProfile} />
           </div>
           <div className="friends-body">
             <h2>Current Friends</h2>

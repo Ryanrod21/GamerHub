@@ -623,6 +623,10 @@ body {
   display: none;
 }
 
+.SideHero .message-friend-btn {
+  display: none;
+}
+
 .friends-page .remove-friend-btn {
   margin-top: 5px;
   padding: 4px 10px;
@@ -635,6 +639,20 @@ body {
 
 .remove-friend-btn:hover {
   background: #e63939;
+}
+
+.friends-page .message-friend-btn {
+  margin-top: 5px;
+  padding: 4px 10px;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.message-friend-btn:hover {
+  background: blue;
 }
 
 @media (max-width: 1200px) {

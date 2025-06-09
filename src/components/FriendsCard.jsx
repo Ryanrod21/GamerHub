@@ -31,7 +31,7 @@ function FriendsCard({ onRefresh }) {
     };
 
     fetchFriends();
-  }, [user]);
+  }, [user, friends]);
 
   const togglePopup = () => setPopup(!showPopup);
   const handleInputChange = (e) => setInputValue(e.target.value);
@@ -91,7 +91,6 @@ function FriendsCard({ onRefresh }) {
               {friend.username}
             </span>
 
-            {/* ✅ Remove button */}
             <button
               onClick={async () => {
                 await removeFriend(user.uid, friend.id);

@@ -1,9 +1,6 @@
 'use client';
 
-import Navbar from '@/sections/NavBar';
 import GameCat from '../../data/GameCat';
-import ProfileData from '@/data/ProfileData';
-import SideHero from '@/sections/SideHero';
 import './games-list.css';
 
 const renderedGames = GameCat.map((game, index) => {

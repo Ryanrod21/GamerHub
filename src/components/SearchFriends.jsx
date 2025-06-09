@@ -65,41 +65,50 @@ function SearchFriends() {
           onClick={handleSearch}
         />
       </div>
+
       {/* Display search results */}
       <div className="search-results">
-        {results.map((userFound) => (
-          <div key={userFound.id} className="search-result-item">
-            <img
-              src={userFound.profilePic || '/acctdefault.jpg'}
-              alt="User"
-              className="result-img"
-            />
-            <p>{userFound.username}</p>
-            {user?.uid !== userFound.id && (
-              <button
-                onClick={async () => {
-                  await addFriend(
-                    user?.uid,
-                    userFound?.id,
-                    userFound?.username
-                  ); // ✅ correct order
-                  // Option 1: Remove from list
-                  setResults((prev) =>
-                    prev.filter((u) => u.id !== userFound.id)
-                  );
-
-                  setSearchTerm('');
-
-                  setSeccussMessage(
-                    `Friend request sent to ${userFound.username}`
-                  );
-                }}
-              >
-                Add Friend
-              </button>
-            )}
+        {results.length === 0 ? (
+          <div className="profile-search-list">
+            <h1>No profiles found...</h1>
           </div>
-        ))}
+        ) : (
+          results.map((userFound) => (
+            <div key={userFound.id} className="search-result-item">
+              <img
+                src={userFound.profilePic || '/acctdefault.jpg'}
+                alt="User"
+                className="result-img"
+              />
+              <p>{userFound.username}</p>
+              {user?.uid !== userFound.id && (
+                <button
+                  onClick={async () => {
+                    await addFriend(
+                      user?.uid,
+                      userFound?.id,
+                      userFound?.username
+                    ); // ✅ correct order
+                    // Option 1: Remove from list
+                    setResults((prev) =>
+                      prev.filter((u) => u.id !== userFound.id)
+                    );
+
+                    setSearchTerm('');
+
+                    setSeccussMessage(
+                      `Friend request sent to ${userFound.username}`
+                    );
+
+                    setTimeout(() => setSeccussMessage(''), 5000);
+                  }}
+                >
+                  Add Friend
+                </button>
+              )}
+            </div>
+          ))
+        )}
         {successMessage && (
           <div className="successMessage">{successMessage}</div>
         )}
