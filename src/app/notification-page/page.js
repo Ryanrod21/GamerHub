@@ -9,13 +9,14 @@ import Navbar from '@/sections/NavBar';
 import './notification.css';
 
 import ProfileData from '@/data/ProfileData';
+import FriendRequests from '@/components/FriendRequests';
 
 function NotificationPage({ notification, removeNotification, clearAll }) {
   return (
     <div className="notification-page">
-      
       <div className="notification-container">
-      
+        <FriendRequests />
+
         <NotificationComponent
           notification={notification}
           removeNotification={removeNotification}

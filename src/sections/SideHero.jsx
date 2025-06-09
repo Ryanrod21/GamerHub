@@ -1,12 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import '../app/App.css';
 import FriendsList from './FriendsList';
 import Logout from '../components/Logout';
 import { useAuth } from '@/context/authContext';
-import NotificationData from '../data/NotificationData';
+import FriendsCard from '@/components/FriendsCard';
 
 function SideHero({ ProfileData, notificationCount }) {
   const { user, userLoggedIn, loading } = useAuth();
@@ -37,7 +36,7 @@ function SideHero({ ProfileData, notificationCount }) {
 
       {userLoggedIn && (
         <>
-          <FriendsList ProfileData={ProfileData} />
+          <FriendsCard />
           <Logout />
         </>
       )}

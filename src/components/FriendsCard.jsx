@@ -1,88 +1,39 @@
 'use client';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
+import { useAuth } from '@/context/authContext';
+import { removeFriend } from '@/utils/friendUtils';
 
-import '../app/App.css';
-import { FaCircle } from 'react-icons/fa';
-import { useState } from 'react';
-
-function FriendsCard({ ProfileData }) {
-  const StatusIcon = ({ color = 'green' }) => (
-    <FaCircle color={color} size={12} />
-  );
-
-  //   Usage
-  //   <StatusIcon color="green" />
-  //   <StatusIcon color="red" />
-
-  const RenderedFriendsOnline = [...ProfileData]
-    .sort((a, b) => {
-      // Put 'online' users before anything else
-      if (a.status === 'online' && b.status !== 'online') return -1;
-      if (a.status !== 'online' && b.status === 'online') return 1;
-
-      if (a.isFriend && !b.isFriend) return -1;
-      if (!a.isFriend && b.isFriend) return 1;
-      return 0;
-    })
-    .map((profile) => {
-      if (profile.status === 'online' && profile.isFriend) {
-        return (
-          <div className="FriendsCardWrapper" key={profile.id}>
-            <div className="FriendsCard">
-              <img className="ProfileImg" src={profile.img} />
-              <span className="ProfileHover">{profile.name} </span>
-              <div className="Profile-popup">
-                {profile.description}
-
-                <ul>
-                  {profile.games?.map((game, index) => {
-                    return (
-                      <li key={index}>
-                        {game.title}: {game.hoursPlayed}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <StatusIcon color="green" />
-            </div>
-          </div>
-        );
-      } else if (profile.status !== 'online' && profile.isFriend) {
-        return (
-          <div className="OfflineCardWrapper" key={profile.id}>
-            <div className="FriendsOfflineCard">
-              <img className="ProfileImgOffline" src={profile.img} />
-              <span className="ProfileHoverOffline">{profile.name} </span>
-              <div className="Profile-popupOffline">{profile.offline}</div>
-              <StatusIcon color="red" />
-            </div>
-          </div>
-        );
-      }
-    });
-
-  const RenderedRecommendFriends = [...ProfileData]
-    .slice(0, 4)
-    .map((profile) => {
-      if (!profile.isFriend) {
-        return (
-          <div className="OfflineCardWrapper" key={profile.id}>
-            <div className="FriendsOfflineCard">
-              <img className="ProfileImgOffline" src={profile.img} />
-              <span className="ProfileHoverOffline">{profile.name} </span>
-              <div className="Profile-popupOffline">{profile.offline}</div>
-            </div>
-          </div>
-        );
-      }
-      // return null; // Ensure the function always returns something (or null if not rendering anything)
-    });
-
+function FriendsCard({ onRefresh }) {
+  const { user } = useAuth();
+  const [friends, setFriends] = useState([]);
   const [showPopup, setPopup] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const togglePopup = () => setPopup(!showPopup);
+  useEffect(() => {
+    if (!user?.uid) return;
 
+    const fetchFriends = async () => {
+      try {
+        const friendsRef = collection(db, 'users', user.uid, 'friends');
+        const snapshot = await getDocs(friendsRef);
+
+        const friendsList = [];
+        snapshot.forEach((doc) => {
+          friendsList.push({ id: doc.id, ...doc.data() });
+        });
+
+        setFriends(friendsList);
+      } catch (err) {
+        console.error('Failed to fetch friends:', err);
+      }
+    };
+
+    fetchFriends();
+  }, [user]);
+
+  const togglePopup = () => setPopup(!showPopup);
   const handleInputChange = (e) => setInputValue(e.target.value);
 
   return (
@@ -106,9 +57,54 @@ function FriendsCard({ ProfileData }) {
           </div>
         )}
       </div>
-      {RenderedFriendsOnline}
-      <p>Recommend:</p>
-      {RenderedRecommendFriends}
+
+      {/* Friends rendering */}
+      {friends.length === 0 && <p>No friends added yet.</p>}
+      {friends.map((friend) => (
+        <div
+          className={
+            friend.status === 'online'
+              ? 'FriendsCardWrapper'
+              : 'OfflineCardWrapper'
+          }
+          key={friend.id}
+        >
+          <div
+            className={
+              friend.status === 'online' ? 'FriendsCard' : 'FriendsOfflineCard'
+            }
+          >
+            <img
+              className={
+                friend.status === 'online' ? 'ProfileImg' : 'ProfileImgOffline'
+              }
+              src={friend.profilePic || '/acctdefault.jpg'}
+              alt={friend.username}
+            />
+            <span
+              className={
+                friend.status === 'online'
+                  ? 'ProfileHover'
+                  : 'ProfileHoverOffline'
+              }
+            >
+              {friend.username}
+            </span>
+
+            {/* ✅ Remove button */}
+            <button
+              onClick={async () => {
+                await removeFriend(user.uid, friend.id);
+                // Update local state to reflect removal
+                setFriends((prev) => prev.filter((f) => f.id !== friend.id));
+              }}
+              className="remove-friend-btn"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

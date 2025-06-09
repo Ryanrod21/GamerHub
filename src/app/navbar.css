@@ -169,6 +169,7 @@
   width: 80px;
   text-align: center;
   margin-top: 4px;
+  z-index: 40;
 }
 
 .navbar-profile-img {

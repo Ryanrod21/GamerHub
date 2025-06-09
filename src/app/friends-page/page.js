@@ -1,10 +1,5 @@
 'use client';
 
-import Navbar from '@/sections/NavBar';
-import SideHero from '@/sections/SideHero';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
 import ProfileData from '@/data/ProfileData';
 
 import './friends-page.css';
@@ -29,7 +24,6 @@ const FriendsPage = () => {
         <div className="friends-container">
           <div className="friends-head">
             <h1>Search for Friends</h1>
-            <h1 className="text-4xl font-bold text-red-600">Tailwind works!</h1>
 
             <div className="friends-search">
               <SearchFriends

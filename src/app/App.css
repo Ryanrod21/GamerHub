@@ -359,6 +359,10 @@ body {
   justify-content: center;
 }
 
+.friends-page .OnlinePlus .addBtn {
+  display: none;
+}
+
 .popup-box {
   width: 90%;
   margin: 5px 0 15px 0;
@@ -495,6 +499,21 @@ body {
   border-radius: 50%;
 }
 
+.search-friends-container {
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.search-friends-container .search-bar input {
+  width: 150px;
+}
+
+.successMessage {
+  font-size: 30px;
+}
+
 .Logout {
   margin-top: 30px;
   background-color: transparent;
@@ -598,6 +617,24 @@ body {
   display: flex;
   gap: 40px;
   padding-top: 20px;
+}
+
+.SideHero .remove-friend-btn {
+  display: none;
+}
+
+.friends-page .remove-friend-btn {
+  margin-top: 5px;
+  padding: 4px 10px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-friend-btn:hover {
+  background: #e63939;
 }
 
 @media (max-width: 1200px) {

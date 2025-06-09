@@ -1,20 +1,34 @@
-'use client';
+// 'use client';
 
-import { useState } from 'react';
-import FriendsCard from '../components/FriendsCard';
+// import { useEffect, useState } from 'react';
+// import FriendsCard from '../components/FriendsCard';
+// import '../app/App.css';
+// import { useAuth } from '@/context/authContext';
+// import { collection, getDocs } from 'firebase/firestore';
+// import { db } from '@/firebase/firebase';
 
-import '../app/App.css';
+// function FriendsList() {
+//   const { user } = useAuth();
+//   const [friends, setFriends] = useState([]);
+//   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-import { useAuth } from '@/context/authContext';
+//   const fetchFriends = async () => {
+//     if (!user?.uid) return;
+//     const snapshot = await getDocs(
+//       collection(db, 'users', user.uid, 'friends')
+//     );
+//     const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+//     setFriends(list);
+//   };
 
-function FriendsList({ ProfileData }) {
-  const { user, userLoggedIn, loading } = useAuth();
+//   useEffect(() => {
+//     fetchFriends();
+//   }, [user, refreshTrigger]);
 
-  return (
-    <>
-      <FriendsCard ProfileData={ProfileData} />
-    </>
-  );
-}
+//   // Provide this to FriendsCard so it can trigger re-fetch
+//   const triggerRefresh = () => setRefreshTrigger((prev) => prev + 1);
 
-export default FriendsList;
+//   return <FriendsCard friends={friends} onRefresh={triggerRefresh} />;
+// }
+
+// export default FriendsList;
