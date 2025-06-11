@@ -25,6 +25,11 @@ function SideHero({ ProfileData, notificationCount }) {
           <a href="/friends-page">Friends</a>
         </p>
       )}
+      {userLoggedIn && (
+        <p className={pathname == '/friend-request' ? 'active' : ''}>
+          <a href="/friend-request">Friend Requests</a>
+        </p>
+      )}
       <p className={pathname == '/notification-page' ? 'active' : ''}>
         <a href="/notification-page">
           Notification

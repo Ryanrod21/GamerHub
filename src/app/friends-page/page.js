@@ -32,7 +32,6 @@ const FriendsPage = () => {
             </div>
           </div>
           <div className="friends-body">
-            <h2>Current Friends</h2>
             <FriendsCard ProfileData={ProfileData} />
           </div>
         </div>

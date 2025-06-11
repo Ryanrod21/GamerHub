@@ -220,8 +220,8 @@ body {
 }
 
 .ProfileImg {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -363,6 +363,10 @@ body {
   display: none;
 }
 
+.friends-page .OnlinePlus p {
+  font-size: 50px;
+}
+
 .popup-box {
   width: 90%;
   margin: 5px 0 15px 0;
@@ -474,7 +478,6 @@ body {
 
 .search-bar button {
   padding: 8px 12px;
-  /* background-color: #ffffff2c; */
   background-color: #58a6ff;
   color: white;
   border: none;
@@ -489,14 +492,23 @@ body {
   gap: 40px;
 }
 
+.search-result-item a {
+  display: flex;
+  text-decoration: none;
+  gap: 20px;
+  align-items: center;
+  color: white;
+}
+
 .search-result-item p {
   font-size: 40px;
 }
 
 .search-result-item img {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .search-friends-container {
@@ -644,7 +656,7 @@ body {
 .friends-page .message-friend-btn {
   margin-top: 5px;
   padding: 4px 10px;
-  background: blue;
+  background: #58a6ff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -652,7 +664,17 @@ body {
 }
 
 .message-friend-btn:hover {
-  background: blue;
+  background: #0875f1;
+}
+
+.FriendsCard a {
+  text-decoration: none;
+  color: white;
+}
+
+.FriendsCard a :active {
+  text-decoration: none;
+  color: #58a6ff;
 }
 
 .SideHero .search-bar {
@@ -706,6 +728,9 @@ body {
 
 .friend-page-link {
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (max-width: 1200px) {

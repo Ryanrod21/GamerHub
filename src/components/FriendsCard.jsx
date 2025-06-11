@@ -6,9 +6,10 @@ import { useAuth } from '@/context/authContext';
 import { removeFriend } from '@/utils/friendUtils';
 import SearchFriends from './SearchFriends';
 import Link from 'next/link';
+import SendMessageButton from './SendMessage';
 
 function FriendsCard() {
-  const { user } = useAuth();
+  const { user, userData } = useAuth();
   const [friends, setFriends] = useState([]);
   const [showPopup, setPopup] = useState(false);
 
@@ -72,45 +73,20 @@ function FriendsCard() {
         // console.log('Friend ID:', friend.id);
         // console.log('Pic:', friend.profilePic);
         return (
-          <div
-            className={
-              friend.status === 'online'
-                ? 'FriendsCardWrapper'
-                : 'OfflineCardWrapper'
-            }
-            key={friend.id}
-          >
-            <div
-              className={
-                friend.status === 'online'
-                  ? 'FriendsCard'
-                  : 'FriendsOfflineCard'
-              }
-            >
+          <div className="FriendsCardWrapper" key={friend.id}>
+            <div className="FriendsCard">
               <Link href={`/account/${friend.id}`} passHref>
                 <div className="friend-page-link">
                   <img
-                    className={
-                      friend.status === 'online'
-                        ? 'ProfileImg'
-                        : 'ProfileImgOffline'
-                    }
+                    className="ProfileImg"
                     src={friend.profilePic || '/acctdefault.jpg'}
                     alt={friend.username}
                   />
-                  <span
-                    className={
-                      friend.status === 'online'
-                        ? 'ProfileHover'
-                        : 'ProfileHoverOffline'
-                    }
-                  >
-                    {friend.username}
-                  </span>
+                  <span className="ProfileHover">{friend.username}</span>
                 </div>
               </Link>
 
-              <button className="message-friend-btn">Send Message</button>
+              <SendMessageButton toUserId={friend.id} />
 
               <button
                 onClick={async () => {

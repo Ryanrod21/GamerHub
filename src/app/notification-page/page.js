@@ -1,27 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import SideHero from '@/sections/SideHero';
-import NotificationComponent from './NotificationComponent';
-import NotificationData from '../../data/NotificationData';
-import Navbar from '@/sections/NavBar';
-
 import './notification.css';
+import Inbox from '@/components/Inbox';
 
-import ProfileData from '@/data/ProfileData';
-import FriendRequests from '@/components/FriendRequests';
-
-function NotificationPage({ notification, removeNotification, clearAll }) {
+function NotificationPage() {
   return (
     <div className="notification-page">
+      <h1>Notification</h1>
       <div className="notification-container">
-        <FriendRequests />
-
-        {/* <NotificationComponent
-          notification={notification}
-          removeNotification={removeNotification}
-          clearAll={clearAll}
-        /> */}
+        <Inbox />
       </div>
     </div>
   );
