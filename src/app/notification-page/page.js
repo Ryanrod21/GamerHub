@@ -17,11 +17,11 @@ function NotificationPage({ notification, removeNotification, clearAll }) {
       <div className="notification-container">
         <FriendRequests />
 
-        <NotificationComponent
+        {/* <NotificationComponent
           notification={notification}
           removeNotification={removeNotification}
           clearAll={clearAll}
-        />
+        /> */}
       </div>
     </div>
   );

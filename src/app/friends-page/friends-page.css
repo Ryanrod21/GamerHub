@@ -188,3 +188,12 @@
   border-radius: 10px;
   padding: 0;
 }
+
+.friends-body .friend-page-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}

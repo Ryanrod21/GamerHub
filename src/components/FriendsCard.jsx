@@ -1,40 +1,57 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
 import { removeFriend } from '@/utils/friendUtils';
+import SearchFriends from './SearchFriends';
+import Link from 'next/link';
 
-function FriendsCard({ onRefresh }) {
+function FriendsCard() {
   const { user } = useAuth();
   const [friends, setFriends] = useState([]);
   const [showPopup, setPopup] = useState(false);
-  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     if (!user?.uid) return;
 
     const fetchFriends = async () => {
       try {
+        // Step 1: Get list of friend IDs
         const friendsRef = collection(db, 'users', user.uid, 'friends');
         const snapshot = await getDocs(friendsRef);
 
         const friendsList = [];
-        snapshot.forEach((doc) => {
-          friendsList.push({ id: doc.id, ...doc.data() });
-        });
 
-        setFriends(friendsList);
+        // Step 2: For each friend ID, get their full profile
+        await Promise.all(
+          snapshot.docs.map(async (docSnap) => {
+            const friendId = docSnap.id;
+            const friendData = docSnap.data();
+
+            const friendProfileRef = doc(db, 'users', friendId);
+            const profileSnap = await getDoc(friendProfileRef);
+
+            const fullProfile = profileSnap.exists() ? profileSnap.data() : {};
+
+            friendsList.push({
+              id: friendId,
+              ...friendData,
+              ...fullProfile,
+            });
+          })
+        );
+
+        setFriends(friendsList); // ✅ merged full data in one array
       } catch (err) {
         console.error('Failed to fetch friends:', err);
       }
     };
 
     fetchFriends();
-  }, [user, friends]);
+  }, [user]);
 
   const togglePopup = () => setPopup(!showPopup);
-  const handleInputChange = (e) => setInputValue(e.target.value);
 
   return (
     <div className="FriendsListCard">
@@ -46,64 +63,68 @@ function FriendsCard({ onRefresh }) {
           </span>
         </div>
 
-        {showPopup && (
-          <div className="popup-box">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Add Friend"
-            />
-          </div>
-        )}
+        {showPopup && <SearchFriends />}
       </div>
 
       {/* Friends rendering */}
       {friends.length === 0 && <p>No friends added yet.</p>}
-      {friends.map((friend) => (
-        <div
-          className={
-            friend.status === 'online'
-              ? 'FriendsCardWrapper'
-              : 'OfflineCardWrapper'
-          }
-          key={friend.id}
-        >
+      {friends.map((friend) => {
+        // console.log('Friend ID:', friend.id);
+        // console.log('Pic:', friend.profilePic);
+        return (
           <div
             className={
-              friend.status === 'online' ? 'FriendsCard' : 'FriendsOfflineCard'
+              friend.status === 'online'
+                ? 'FriendsCardWrapper'
+                : 'OfflineCardWrapper'
             }
+            key={friend.id}
           >
-            <img
-              className={
-                friend.status === 'online' ? 'ProfileImg' : 'ProfileImgOffline'
-              }
-              src={friend.profilePic || '/acctdefault.jpg'}
-              alt={friend.username}
-            />
-            <span
+            <div
               className={
                 friend.status === 'online'
-                  ? 'ProfileHover'
-                  : 'ProfileHoverOffline'
+                  ? 'FriendsCard'
+                  : 'FriendsOfflineCard'
               }
             >
-              {friend.username}
-            </span>
+              <Link href={`/account/${friend.id}`} passHref>
+                <div className="friend-page-link">
+                  <img
+                    className={
+                      friend.status === 'online'
+                        ? 'ProfileImg'
+                        : 'ProfileImgOffline'
+                    }
+                    src={friend.profilePic || '/acctdefault.jpg'}
+                    alt={friend.username}
+                  />
+                  <span
+                    className={
+                      friend.status === 'online'
+                        ? 'ProfileHover'
+                        : 'ProfileHoverOffline'
+                    }
+                  >
+                    {friend.username}
+                  </span>
+                </div>
+              </Link>
 
-            <button
-              onClick={async () => {
-                await removeFriend(user.uid, friend.id);
-                // Update local state to reflect removal
-                setFriends((prev) => prev.filter((f) => f.id !== friend.id));
-              }}
-              className="remove-friend-btn"
-            >
-              Remove
-            </button>
+              <button className="message-friend-btn">Send Message</button>
+
+              <button
+                onClick={async () => {
+                  await removeFriend(user.uid, friend.id);
+                  setFriends((prev) => prev.filter((f) => f.id !== friend.id));
+                }}
+                className="remove-friend-btn"
+              >
+                Remove
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

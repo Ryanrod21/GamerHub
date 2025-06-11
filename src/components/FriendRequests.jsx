@@ -9,6 +9,7 @@ import {
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
 import { useEffect, useState } from 'react';
+import '../app./App.css';
 
 function FriendRequests() {
   const { user } = useAuth();
@@ -41,6 +42,7 @@ function FriendRequests() {
   }, [user]);
 
   const acceptRequest = async (request) => {
+    console.log(request);
     try {
       // Add both users to each other's friends list
       const currentUserFriendRef = doc(
@@ -48,19 +50,19 @@ function FriendRequests() {
         'users',
         user.uid,
         'friends',
-        request.userId
+        request.fromUserId
       );
       const requesterFriendRef = doc(
         db,
         'users',
-        request.userId,
+        request.fromUserId,
         'friends',
         user.uid
       );
 
       await setDoc(currentUserFriendRef, {
-        userId: request.userId,
-        username: request.username,
+        userId: request.fromUserId,
+        username: request.fromUsername,
         addedAt: Date.now(),
       });
 
@@ -71,10 +73,14 @@ function FriendRequests() {
       });
 
       // Delete the request
-      await deleteDoc(doc(db, 'users', user.uid, 'requests', request.userId));
+      await deleteDoc(
+        doc(db, 'users', user.uid, 'friendRequests', request.fromUserId)
+      );
 
       // Update local state
-      setRequests((prev) => prev.filter((r) => r.userId !== request.userId));
+      setRequests((prev) =>
+        prev.filter((r) => r.fromUserId !== request.fromUserId)
+      );
     } catch (error) {
       console.error('Error accepting request:', error);
     }
@@ -82,8 +88,12 @@ function FriendRequests() {
 
   const rejectRequest = async (request) => {
     try {
-      await deleteDoc(doc(db, 'users', user.uid, 'requests', request.userId));
-      setRequests((prev) => prev.filter((r) => r.userId !== request.userId));
+      await deleteDoc(
+        doc(db, 'users', user.uid, 'friendRequests', request.fromUserId)
+      );
+      setRequests((prev) =>
+        prev.filter((r) => r.userId !== request.fromUserId)
+      );
     } catch (error) {
       console.error('Error rejecting request:', error);
     }
@@ -92,24 +102,32 @@ function FriendRequests() {
   return (
     <div className="friend-requests">
       <h2>Friend Requests</h2>
-      {requests.length === 0 ? (
-        <p>No friend requests</p>
-      ) : (
-        requests.map((req) => (
-          <div className="request-item notification">
-            <img src={req.profilePic} alt="Profile" className="notif-img" />
-            <div>
-              <p>
-                <strong>{req.username}</strong> sent you a friend request
-              </p>
-              <div className="notif-buttons">
-                <button onClick={() => acceptRequest(req)}>Accept</button>
-                <button onClick={() => rejectRequest(req)}>Reject</button>
+      <div className="friends-requests-container">
+        {loading ? (
+          <p>Loading friend requests...</p>
+        ) : requests.length === 0 ? (
+          <p>No friend requests</p>
+        ) : (
+          requests.map((req) => (
+            <div key={req.id} className="request-item notification">
+              <img
+                src={req.profilePic || '/acctdefault.jpg'}
+                alt={`${req.username}'s profile`}
+                className="notif-img"
+              />
+              <div>
+                <p>
+                  <strong>{req.fromUsername}</strong> sent you a friend request
+                </p>
+                <div className="notif-buttons">
+                  <button onClick={() => acceptRequest(req)}>Accept</button>
+                  <button onClick={() => rejectRequest(req)}>Reject</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 }

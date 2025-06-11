@@ -655,6 +655,59 @@ body {
   background: blue;
 }
 
+.SideHero .search-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.SideHero .search-bar input {
+  width: 80%;
+}
+
+.SideHero .search-result-item img {
+  width: 30px;
+  height: 30px;
+}
+
+.SideHero .search-results {
+  display: none;
+}
+
+.friend-requests {
+  justify-items: center;
+  color: white;
+}
+
+.friend-requests h2 {
+  font-size: 50px;
+}
+
+.friends-requests-container {
+  display: flex;
+  width: 100%;
+}
+
+.friend-requests img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.request-item {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  font-size: 40px;
+}
+
+.notif-buttons {
+  display: flex;
+}
+
+.friend-page-link {
+  text-decoration: none;
+}
+
 @media (max-width: 1200px) {
   body {
     margin: 10px;
