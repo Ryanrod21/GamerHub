@@ -5,7 +5,8 @@ export const addFriend = async (
   currentUserId,
   targetUserId,
   targetUsername,
-  currentUsername
+  currentUsername,
+  currentProfilePic
 ) => {
   if (!currentUserId || !targetUserId || !targetUsername || !currentUsername) {
     console.error('Missing parameters in addFriend:', {
@@ -37,6 +38,7 @@ export const addFriend = async (
     await setDoc(requestRef, {
       fromUserId: currentUserId,
       fromUsername: currentUsername,
+      profilePic: currentProfilePic || null,
       sentAt: Date.now(),
       status: 'pending',
     });
@@ -46,11 +48,18 @@ export const addFriend = async (
     console.error('Error sending friend request:', error);
   }
 };
+
 export const removeFriend = async (currentUserId, friendId) => {
   try {
-    const friendRef = doc(db, 'users', currentUserId, 'friends', friendId);
-    await deleteDoc(friendRef);
-    console.log('Friend removed');
+    // Remove friend from current user's list
+    const myFriendRef = doc(db, 'users', currentUserId, 'friends', friendId);
+    await deleteDoc(myFriendRef);
+
+    // Remove current user from friend's list
+    const theirFriendRef = doc(db, 'users', friendId, 'friends', currentUserId);
+    await deleteDoc(theirFriendRef);
+
+    console.log('Friendship removed from both users');
   } catch (error) {
     console.error('Error removing friend:', error);
   }

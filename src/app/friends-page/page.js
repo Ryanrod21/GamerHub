@@ -10,17 +10,10 @@ import SearchFriends from '@/components/SearchFriends';
 const FriendsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredProfile =
-    searchTerm.length >= 3
-      ? ProfileData.filter((profile) =>
-          profile.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      : [];
-
   return (
     <div>
       <div className="friends-page">
-        <div className="friends-container">
+        <div className="friends-list-container">
           <div className="friends-head">
             <h1>Search for Friends</h1>
 

@@ -5,8 +5,13 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
 
-export default function SendMessageButton({ toUserId }) {
-  const [showInput, setShowInput] = useState(false);
+export default function SendMessageButton({
+  toUserId,
+  autoOpen = false,
+  onCancel,
+  onSendComplete,
+}) {
+  const [showInput, setShowInput] = useState(autoOpen);
   const [message, setMessage] = useState('');
 
   const { userData, user } = useAuth(); // assuming userData has username
@@ -34,6 +39,8 @@ export default function SendMessageButton({ toUserId }) {
       });
       setMessage('');
       setShowInput(false);
+
+      if (onSendComplete) onSendComplete();
     } catch (err) {
       console.error('Failed to send message:', err);
     }
@@ -44,14 +51,22 @@ export default function SendMessageButton({ toUserId }) {
     console.log('messg', e.target.value);
   };
 
+  const handleCancel = () => {
+    setShowInput(false);
+    if (onCancel) onCancel();
+  };
+
   return (
     <div className="send-message-wrapper">
-      <button
-        className="message-friend-btn"
-        onClick={() => setShowInput(!showInput)}
-      >
-        {showInput ? 'Cancel' : 'Send Message'}
-      </button>
+      {!showInput && (
+        <button
+          className="message-friend-btn"
+          onClick={() => setShowInput(!showInput)}
+          style={{ display: showInput ? 'none' : 'inline-block' }} // hide when input open
+        >
+          {showInput ? 'Cancel' : 'Send Message'}
+        </button>
+      )}
 
       {showInput && (
         <div className="message-popup">
@@ -64,6 +79,10 @@ export default function SendMessageButton({ toUserId }) {
           />
           <button onClick={handleSend} className="send-btn">
             Send
+          </button>
+
+          <button onClick={handleCancel} className="cancel-btn">
+            Cancel
           </button>
         </div>
       )}

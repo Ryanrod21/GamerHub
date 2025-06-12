@@ -1,3 +1,5 @@
+'use client';
+
 import {
   collection,
   getDocs,
@@ -42,7 +44,6 @@ function FriendRequests() {
   }, [user]);
 
   const acceptRequest = async (request) => {
-    console.log(request);
     try {
       // Add both users to each other's friends list
       const currentUserFriendRef = doc(
@@ -72,11 +73,6 @@ function FriendRequests() {
         addedAt: Date.now(),
       });
 
-      // Delete the request
-      await deleteDoc(
-        doc(db, 'users', user.uid, 'friendRequests', request.fromUserId)
-      );
-
       // Update local state
       setRequests((prev) =>
         prev.filter((r) => r.fromUserId !== request.fromUserId)
@@ -91,9 +87,8 @@ function FriendRequests() {
       await deleteDoc(
         doc(db, 'users', user.uid, 'friendRequests', request.fromUserId)
       );
-      setRequests((prev) =>
-        prev.filter((r) => r.userId !== request.fromUserId)
-      );
+
+      setRequests((prev) => prev.filter((r) => r.id !== request.fromUserId));
     } catch (error) {
       console.error('Error rejecting request:', error);
     }
@@ -104,9 +99,9 @@ function FriendRequests() {
       <h2>Friend Requests</h2>
       <div className="friends-requests-container">
         {loading ? (
-          <p>Loading friend requests...</p>
+          <h2>Loading friend requests...</h2>
         ) : requests.length === 0 ? (
-          <p>No friend requests</p>
+          <h2>No friend requests</h2>
         ) : (
           requests.map((req) => (
             <div key={req.id} className="request-item notification">

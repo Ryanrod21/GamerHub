@@ -56,51 +56,53 @@ function FriendsCard() {
 
   return (
     <div className="FriendsListCard">
-      <div className="FriendsPanel">
-        <div className="OnlinePlus">
-          <p>Friends List</p>
-          <span className="addBtn" onClick={togglePopup}>
-            +
-          </span>
+      <div className="friends-container">
+        <div className="FriendsPanel">
+          <div className="OnlinePlus">
+            <p>Friends List</p>
+            <span className="addBtn" onClick={togglePopup}>
+              +
+            </span>
+          </div>
+
+          {showPopup && <SearchFriends />}
         </div>
 
-        {showPopup && <SearchFriends />}
-      </div>
+        {/* Friends rendering */}
+        {friends.length === 0 && <p>No friends added yet.</p>}
+        {friends.map((friend) => {
+          return (
+            <div className="FriendsCardWrapper" key={friend.id}>
+              <div className="FriendsCard">
+                <Link href={`/account/${friend.id}`} passHref>
+                  <div className="friend-page-link">
+                    <img
+                      className="ProfileImg"
+                      src={friend.profilePic || '/acctdefault.jpg'}
+                      alt={friend.username}
+                    />
+                    <span className="ProfileHover">{friend.username}</span>
+                  </div>
+                </Link>
 
-      {/* Friends rendering */}
-      {friends.length === 0 && <p>No friends added yet.</p>}
-      {friends.map((friend) => {
-        // console.log('Friend ID:', friend.id);
-        // console.log('Pic:', friend.profilePic);
-        return (
-          <div className="FriendsCardWrapper" key={friend.id}>
-            <div className="FriendsCard">
-              <Link href={`/account/${friend.id}`} passHref>
-                <div className="friend-page-link">
-                  <img
-                    className="ProfileImg"
-                    src={friend.profilePic || '/acctdefault.jpg'}
-                    alt={friend.username}
-                  />
-                  <span className="ProfileHover">{friend.username}</span>
-                </div>
-              </Link>
+                <SendMessageButton toUserId={friend.id} />
 
-              <SendMessageButton toUserId={friend.id} />
-
-              <button
-                onClick={async () => {
-                  await removeFriend(user.uid, friend.id);
-                  setFriends((prev) => prev.filter((f) => f.id !== friend.id));
-                }}
-                className="remove-friend-btn"
-              >
-                Remove
-              </button>
+                <button
+                  onClick={async () => {
+                    await removeFriend(user.uid, friend.id);
+                    setFriends((prev) =>
+                      prev.filter((f) => f.id !== friend.id)
+                    );
+                  }}
+                  className="remove-friend-btn"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

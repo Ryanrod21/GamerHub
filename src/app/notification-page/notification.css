@@ -1,15 +1,18 @@
 .notification-page {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   width: 89%;
   padding: 50px;
   gap: 15px;
+  align-items: center;
+  color: white;
 }
 
 .notification-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 
 .notification-body {

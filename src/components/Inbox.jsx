@@ -12,10 +12,12 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
+import SendMessageButton from './SendMessage';
 
 export default function Inbox() {
   const { user } = useAuth(); // current user
   const [messages, setMessages] = useState([]);
+  const [replyToId, setReplyToId] = useState(null); // track which message is replying
 
   useEffect(() => {
     if (!user?.uid) return;
@@ -46,25 +48,52 @@ export default function Inbox() {
   };
 
   return (
-    <div>
-      <h2>Inbox</h2>
-      {messages.length === 0 && <p>No messages yet.</p>}
-      <ul>
-        {messages.map((msg) => (
-          <li key={msg.id} style={{ marginBottom: '1rem' }}>
-            <strong>From:</strong> {msg.from?.username || 'Unknown user'}
-            <br />
-            <strong>Message:</strong> {msg.message}
-            <br />
-            <button
-              onClick={() => handleDelete(msg.id)}
-              style={{ marginTop: '0.5rem' }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+    <div className="inbox-wrapper">
+      <h2 className="inbox-title">Inbox</h2>
+      <div className="inbox-list-container">
+        {messages.length === 0 ? (
+          <p className="no-messages">No messages yet.</p>
+        ) : (
+          messages.map((msg) => (
+            <div key={msg.id} className="message-card">
+              <p className="message-from">
+                <strong>From:</strong> {msg.from?.username || 'Unknown user'}
+              </p>
+              <p className="message-content">
+                <strong>Message:</strong> {msg.message}
+              </p>
+              <div className="message-actions">
+                {replyToId !== msg.id && (
+                  <>
+                    <button
+                      className="btn-reply"
+                      onClick={() =>
+                        setReplyToId(replyToId === msg.id ? null : msg.id)
+                      }
+                    >
+                      Reply
+                    </button>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(msg.id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+              {replyToId === msg.id && (
+                <SendMessageButton
+                  toUserId={msg.from?.uid}
+                  autoOpen
+                  onCancel={() => setReplyToId(null)}
+                  onSendComplete={() => setReplyToId(null)}
+                />
+              )}
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

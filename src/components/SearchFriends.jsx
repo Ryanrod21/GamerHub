@@ -11,7 +11,7 @@ import { useAuth } from '@/context/authContext';
 import Link from 'next/link';
 
 function SearchFriends() {
-  const { user } = useAuth();
+  const { user, userData } = useAuth();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
@@ -102,7 +102,8 @@ function SearchFriends() {
                       user?.uid,
                       userFound?.id,
                       userFound?.username,
-                      currentUsername
+                      currentUsername,
+                      userData?.profilePic
                     ); // ✅ correct order
                     // Option 1: Remove from list
                     setResults((prev) =>
