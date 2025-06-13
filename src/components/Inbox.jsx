@@ -18,6 +18,7 @@ export default function Inbox() {
   const { user } = useAuth(); // current user
   const [messages, setMessages] = useState([]);
   const [replyToId, setReplyToId] = useState(null); // track which message is replying
+  const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
     if (!user?.uid) return;

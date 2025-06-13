@@ -73,6 +73,8 @@ function FriendRequests() {
         addedAt: Date.now(),
       });
 
+      await deleteDoc(doc(db, 'users', user.uid, 'friendRequests', request.id));
+
       // Update local state
       setRequests((prev) =>
         prev.filter((r) => r.fromUserId !== request.fromUserId)

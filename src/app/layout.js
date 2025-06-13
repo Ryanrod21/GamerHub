@@ -6,6 +6,7 @@ import SideHero from '@/sections/SideHero';
 import '../app/games-list/games-list.css';
 import { AuthProvider } from '@/context/authContext';
 import ProfileData from '@/data/ProfileData';
+import { MessageProvider } from '@/context/messageContext/messageContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,15 +36,17 @@ export default function RootLayout({ children }) {
         <div className="page-wrapper">
           <div className="inner-wrapper">
             <AuthProvider>
-              {!hideLayout && <SideHero ProfileData={ProfileData} />}
-              <div className="nav-content-wrapper">
-                {!hideLayout && <Navbar />}
-                <SideHeroMobile ProfileData={ProfileData} />
-                {!hideLayout && (
-                  <div className="scrollable-content">{children}</div>
-                )}
-                {hideLayout && <div>{children} </div>}
-              </div>
+              <MessageProvider>
+                {!hideLayout && <SideHero ProfileData={ProfileData} />}
+                <div className="nav-content-wrapper">
+                  {!hideLayout && <Navbar />}
+                  {!hideLayout && <SideHeroMobile ProfileData={ProfileData} />}
+                  {!hideLayout && (
+                    <div className="scrollable-content">{children}</div>
+                  )}
+                  {hideLayout && <div>{children} </div>}
+                </div>
+              </MessageProvider>
             </AuthProvider>
           </div>
         </div>

@@ -2,42 +2,58 @@
 
 import { usePathname } from 'next/navigation';
 import '../app/App.css';
-import FriendsList from './FriendsList';
 import Logout from '../components/Logout';
 import { useAuth } from '@/context/authContext';
 import FriendsCard from '@/components/FriendsCard';
+import { useMessages } from '@/context/messageContext/messageContext';
+import { useFriendRequestsCount } from '@/components/FriendCount';
 
-function SideHero({ ProfileData, notificationCount }) {
+function SideHero() {
   const { user, userLoggedIn, loading } = useAuth();
+
+  const { unreadCount } = useMessages();
+
+  const friendRequestsCount = useFriendRequestsCount();
 
   const pathname = usePathname();
 
   return (
     <div className={`SideHero ${userLoggedIn ? '' : 'loggedOut'}`}>
-      <p className={pathname == '/' ? 'active' : ''}>
+      <div className={pathname == '/' ? 'active' : ''}>
         <a href="/">My Dashboard</a>
-      </p>
-      <p className={pathname == '/games-list' ? 'active' : ''}>
+      </div>
+      <div className={pathname == '/games-list' ? 'active' : ''}>
         <a href="/games-list">Game's List</a>
-      </p>
+      </div>
       {userLoggedIn && (
-        <p className={pathname == '/friends-page' ? 'active' : ''}>
+        <div className={pathname == '/friends-page' ? 'active' : ''}>
           <a href="/friends-page">Friends</a>
-        </p>
+        </div>
       )}
       {userLoggedIn && (
-        <p className={pathname == '/friend-request' ? 'active' : ''}>
-          <a href="/friend-request">Friend Requests</a>
-        </p>
+        <div className={pathname == '/friend-request' ? 'active' : ''}>
+          <div className="friend-and-badge">
+            <a href="/friend-request">
+              Friend Requests
+              {friendRequestsCount > 0 && (
+                <span className="notification-badge">
+                  {friendRequestsCount}
+                </span>
+              )}
+            </a>
+          </div>
+        </div>
       )}
-      <p className={pathname == '/notification-page' ? 'active' : ''}>
-        <a href="/notification-page">
-          Notification
-          {notificationCount > 0 && (
-            <span className="notification-badge">{notificationCount}</span>
-          )}
-        </a>
-      </p>
+      <div className={pathname == '/notification-page' ? 'active' : ''}>
+        <div className="notify-and-badge">
+          <a href="/notification-page">
+            Notification
+            {unreadCount > 0 && (
+              <span className="notification-badge">{unreadCount}</span>
+            )}
+          </a>
+        </div>
+      </div>
 
       {userLoggedIn && (
         <>
