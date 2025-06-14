@@ -1,7 +1,5 @@
 'use client';
-import Navbar from '@/sections/NavBar';
 
-import '../App.css';
 import './about.css';
 import { useEffect } from 'react';
 
