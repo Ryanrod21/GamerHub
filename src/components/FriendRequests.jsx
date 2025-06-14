@@ -11,7 +11,7 @@ import {
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
 import { useEffect, useState } from 'react';
-import '../app./App.css';
+import '../app/App.css';
 
 function FriendRequests() {
   const { user } = useAuth();
