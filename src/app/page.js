@@ -7,7 +7,6 @@ import ShowMusic from '../sections/ShowMusic';
 import GameHero from '../sections/GameHero';
 import MainNews from '../sections/MainNews';
 
-import GameData from '../data/GameData';
 import MusicData from '../data/MusciData';
 import GameNewsData from '../data/GameNewsData';
 
@@ -20,8 +19,9 @@ function App() {
         <MainNews GameNewsData={GameNewsData} />
         <ShowMusic MusicData={MusicData} />
       </div>
-      <GameHero GameData={GameData} />
+      <GameHero />
     </div>
+
     // </div>
   );
 }

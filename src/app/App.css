@@ -889,10 +889,6 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-  body {
-    background-color: blue;
-  }
-
   .MainNews-SlideBtn {
     padding: 10px;
     height: 110px;
@@ -925,10 +921,6 @@ body {
 }
 
 @media screen and (max-width: 690px) {
-  body {
-    background-color: red;
-  }
-
   .MainNews-SlideBtn {
     width: 120px;
   }
