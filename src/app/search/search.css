@@ -1,0 +1,33 @@
+.search-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-hero h1 {
+  font-size: 40px;
+  color: white;
+}
+
+.search-hero ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-card {
+  word-break: normal;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.search-card h4 {
+  color: white;
+  width: 400px;
+  font-size: 20px;
+}

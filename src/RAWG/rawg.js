@@ -1,5 +1,3 @@
-import { ApiError } from 'next/dist/server/api-utils';
-
 const API_KEY = process.env.NEXT_PUBLIC_RAWG_API_KEY;
 const BASE_URL = 'https://api.rawg.io/api';
 
@@ -10,10 +8,8 @@ export async function fetchPopularGames(page = 1, page_size = 5) {
   return res.json();
 }
 
-export async function searchGames(query) {
-  const url = `${BASE_URL}/games?key=${API_KEY}&search=${encodeURIComponent(
-    query
-  )}`;
+export async function searchGames(search, ordering = '', page = 1) {
+  const url = `${BASE_URL}/games?key=${API_KEY}&search=${search}&ordering=${ordering}&page=${page}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error('Failed to search games');
   return res.json();
