@@ -8,8 +8,18 @@ export async function fetchPopularGames(page = 1, page_size = 5) {
   return res.json();
 }
 
-export async function searchGames(search, ordering = '', page = 1) {
-  const url = `${BASE_URL}/games?key=${API_KEY}&search=${search}&ordering=${ordering}&page=${page}`;
+export async function searchGames(
+  query,
+  ordering = '',
+  page = 1,
+  parentPlatforms = ''
+) {
+  let url = `${BASE_URL}/games?key=${API_KEY}&search=${query}&search_precise=true&ordering=${ordering}&page=${page}`;
+
+  if (parentPlatforms) {
+    url += `&parent_platforms=${parentPlatforms}`;
+  }
+
   const res = await fetch(url);
   if (!res.ok) throw new Error('Failed to search games');
   return res.json();
@@ -44,7 +54,7 @@ export async function getGameGenres() {
 }
 
 export async function getGamesByGenres(genreSlug, page = 1) {
-  const url = `${BASE_URL}/games?key=${API_KEY}&genres=${genreSlug}&page=${page}&page_size=10&ordering=name`;
+  const url = `${BASE_URL}/games?key=${API_KEY}&genres=${genreSlug}&page=${page}&page_size=12`;
   const res = await fetch(url);
   if (!res.ok) throw new Error('Failed to fetch games');
   return res.json();

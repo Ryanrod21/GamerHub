@@ -138,6 +138,45 @@
   transform: scale(1.03);
 }
 
+.games-genre button {
+  background-color: #58a6ff;
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border: none;
+  width: 120px;
+}
+
+.games-genre-head {
+  color: white;
+  font-size: 35px;
+  text-align: center;
+}
+
+.games-genre a:active {
+  text-decoration: none;
+  color: #58a6ff;
+}
+
+.games-genre a:link {
+  text-decoration: none;
+}
+
+.next-prev-button {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.games-genre .back-genre-button {
+  width: 220px;
+  font-size: 15px;
+}
+
 @media (max-width: 1200px) {
   .mobileside {
     display: block;

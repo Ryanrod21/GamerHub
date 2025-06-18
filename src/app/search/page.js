@@ -8,6 +8,7 @@ import './search.css';
 
 export default function SearchResultsPage() {
   const searchParams = useSearchParams();
+  const parentPlatforms = searchParams.get('platforms') || '';
   const router = useRouter();
 
   const query = searchParams.get('query');
@@ -22,14 +23,14 @@ export default function SearchResultsPage() {
     if (!query) return;
 
     const fetchResults = async () => {
-      const data = await searchGames(query, sort, page);
+      const data = await searchGames(query, sort, page, parentPlatforms);
       setResults(data.results);
       setNextPage(data.next);
       setPrevPage(data.previous);
     };
 
     fetchResults();
-  }, [query, sort, page]);
+  }, [query, sort, page, parentPlatforms]);
 
   const handleSortChange = (e) => {
     const selectedSort = e.target.value;
@@ -37,11 +38,6 @@ export default function SearchResultsPage() {
       `/search?query=${encodeURIComponent(query)}&sort=${selectedSort}`
     );
   };
-
-  const prefix = query?.slice(0, 2).toLowerCase() || '';
-  const filteredResults = results.filter((game) =>
-    game.name.toLowerCase().startsWith(prefix)
-  );
 
   if (!query) return <p>No search term provided.</p>;
 
@@ -60,9 +56,32 @@ export default function SearchResultsPage() {
         </select>
       </div>
 
-      {/* 2. Map over filteredResults here instead of results */}
+      <div style={{ marginBottom: '1rem' }}>
+        <label htmlFor="platforms">Filter by Platform: </label>
+        <select
+          id="platforms"
+          value={parentPlatforms}
+          onChange={(e) => {
+            const selected = e.target.value;
+            router.push(
+              `/search?query=${encodeURIComponent(
+                query
+              )}&sort=${sort}&platforms=${selected}`
+            );
+          }}
+        >
+          <option value="">All</option>
+          <option value="1">PC</option>
+          <option value="2">PlayStation</option>
+          <option value="3">Xbox</option>
+          <option value="4">iOS</option>
+          <option value="8">Nintendo</option>
+          {/* Add more as needed */}
+        </select>
+      </div>
+
       <ul>
-        {filteredResults.map((game) => (
+        {results.map((game) => (
           <li key={game.id}>
             <Link href={`/games-list/${game.id}`}>
               <div className="search-card">

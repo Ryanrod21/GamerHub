@@ -101,9 +101,13 @@ function GameGenres() {
 
   // Show games list with pagination and clickable games
   return (
-    <div>
-      <button onClick={backToGenres}>← Back to Genres</button>
-      <h2>Games in {selectedGenre}</h2>
+    <div className="games-genre">
+      <div className="games-genre-head">
+        <button className="back-genre-button" onClick={backToGenres}>
+          ← Back to Genres
+        </button>
+        <h2>Games in {selectedGenre}</h2>
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -133,20 +137,24 @@ function GameGenres() {
               </Link>
             ))}
           </div>
-          <div style={{ marginTop: '20px' }}>
-            <button
-              onClick={() => setPage((p) => Math.max(p - 1, 1))}
-              disabled={!prevPage}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => setPage((p) => p + 1)}
-              disabled={!nextPage}
-              style={{ marginLeft: '10px' }}
-            >
-              Next
-            </button>
+          <div className="next-prev-button">
+            {prevPage && (
+              <button
+                onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                disabled={!prevPage}
+              >
+                Previous
+              </button>
+            )}
+            {nextPage && (
+              <button
+                onClick={() => setPage((p) => p + 1)}
+                disabled={!nextPage}
+                style={{ marginLeft: '10px' }}
+              >
+                Next
+              </button>
+            )}
           </div>
         </>
       )}

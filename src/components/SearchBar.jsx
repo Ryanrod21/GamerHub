@@ -31,26 +31,8 @@ export default function SearchBar() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
-        style={{
-          padding: '0.5rem',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          flex: 1,
-        }}
       />
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: '0.5rem 1rem',
-          borderRadius: '5px',
-          backgroundColor: '#333',
-          color: '#fff',
-          border: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        Search
-      </button>
+      <button onClick={handleSearch}>Search</button>
       <FontAwesomeIcon
         className="searchbar-mag"
         icon={faMagnifyingGlass}
