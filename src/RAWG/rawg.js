@@ -65,3 +65,16 @@ export async function getGameScreenShot(id) {
   const res = await fetch(url);
   return res.json();
 }
+
+export async function getTopGames(limit = 5) {
+  const url = `${BASE_URL}/games?key=${API_KEY}&ordering=-added&page_size=${limit}`;
+  const res = await fetch(url);
+  return res.json();
+}
+
+export async function getPlatforms() {
+  const url = `${BASE_URL}/platforms?key=${API_KEY}`;
+  const res = await fetch(url);
+
+  return res.json();
+}

@@ -16,7 +16,7 @@ function GameHeroCard() {
   useEffect(() => {
     async function loadPopularGames() {
       try {
-        const data = await fetchPopularGames();
+        const data = await fetchPopularGames(3, 7);
         setPopularGame(data.results);
       } catch (error) {
         console.error(error);
@@ -28,7 +28,7 @@ function GameHeroCard() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 3000,
+    speed: 5000,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,

@@ -57,9 +57,12 @@ export default function Inbox() {
         ) : (
           messages.map((msg) => (
             <div key={msg.id} className="message-card">
-              <p className="message-from">
-                <strong>From:</strong> {msg.from?.username || 'Unknown user'}
-              </p>
+              <div className="message-from-img">
+                <p className="message-from">
+                  <strong>From:</strong> {msg.from?.username || 'Unknown user'}
+                </p>
+                <img src={msg.from?.profilePic} />
+              </div>
               <p className="message-content">
                 <strong>Message:</strong> {msg.message}
               </p>

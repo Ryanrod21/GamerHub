@@ -1,10 +1,10 @@
 import '../app/App.css';
 import ImageSlider from '../components/ImageSlider';
 
-function MainNews({ GameNewsData }) {
+function MainNews() {
   return (
     <div className="MainNews">
-      <ImageSlider GameNews={GameNewsData} />
+      <ImageSlider />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import { useAuth } from '@/context/authContext';
+import '../app/App.css';
 
 export default function SendMessageButton({
   toUserId,
@@ -32,6 +33,7 @@ export default function SendMessageButton({
         from: {
           uid: user.uid,
           username: userData.username, // get username from your context here
+          profilePic: userData.profilePic,
         },
         to: toUserId,
         message,
@@ -70,13 +72,13 @@ export default function SendMessageButton({
 
       {showInput && (
         <div className="message-popup">
-          <input
-            type="text"
+          <textarea
             placeholder="Type your message..."
             value={message}
             onChange={handleChange}
             className="message-input"
           />
+
           <button onClick={handleSend} className="send-btn">
             Send
           </button>

@@ -114,9 +114,8 @@ function GameGenres() {
         <>
           <div className="games-container">
             {games.map((game) => (
-              <Link href={`/games-list/${game.id}`}>
+              <Link href={`/games-list/${game.id}`} key={game.id}>
                 <div
-                  key={game.id}
                   className="game-card"
                   onClick={() => setSelectedGameId(game.id)}
                   style={{ cursor: 'pointer' }}

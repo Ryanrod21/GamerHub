@@ -44,16 +44,18 @@ function SideHero() {
           </div>
         </div>
       )}
-      <div className={pathname == '/notification-page' ? 'active' : ''}>
-        <div className="notify-and-badge">
-          <a href="/notification-page">
-            Notification
-            {unreadCount > 0 && (
-              <span className="notification-badge">{unreadCount}</span>
-            )}
-          </a>
+      {userLoggedIn && (
+        <div className={pathname == '/notification-page' ? 'active' : ''}>
+          <div className="notify-and-badge">
+            <a href="/notification-page">
+              Notification
+              {unreadCount > 0 && (
+                <span className="notification-badge">{unreadCount}</span>
+              )}
+            </a>
+          </div>
         </div>
-      </div>
+      )}
 
       {userLoggedIn && (
         <>

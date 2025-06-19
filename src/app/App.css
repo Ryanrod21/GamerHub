@@ -183,7 +183,7 @@ body {
   background-color: #32323294;
   padding: 20px;
   border-radius: 10px;
-  /* text don't stay at same spot  */
+  width: 310px;
 }
 
 .MainNews-SlideBtn h2 {
@@ -197,7 +197,7 @@ body {
   color: white;
   margin: 0;
   max-width: 300px;
-  height: 110px;
+
   font-size: 16px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
@@ -774,6 +774,20 @@ body {
 
 .message-card p {
   color: white;
+  font-size: 19px;
+}
+
+.message-from-img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.message-card img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .message-from,
@@ -826,6 +840,151 @@ body {
 
 .notify-and-badge {
   display: flex;
+}
+
+.active {
+  margin-top: 10px;
+}
+
+.send-message-wrapper {
+  position: relative;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.message-friend-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.message-friend-btn:hover {
+  background-color: #0056b3;
+}
+
+.message-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.message-input {
+  width: 100%;
+  max-width: 600px;
+  min-height: 120px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.message-input:focus {
+  border-color: #007bff;
+}
+
+.send-btn,
+.cancel-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.send-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}
+
+.tags {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-shadow: -1px -1px #000, 1px -1px #000, -1px 1px #000, 1px 1px #000;
+}
+
+.circle-button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: #222;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #444;
+  stroke-width: 4;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: #00f;
+  stroke-width: 4;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset linear;
+}
+
+.slider-controls {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1200px) {
