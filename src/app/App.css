@@ -97,8 +97,9 @@ body {
   box-shadow: 0 0 20px black;
   z-index: 9;
   margin: 20px 0 20px 20px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  gap: 20px;
 }
 
 .SideHero a {
@@ -181,9 +182,10 @@ body {
   gap: 5px;
   text-align: center;
   background-color: #32323294;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   width: 310px;
+  height: 254px;
 }
 
 .MainNews-SlideBtn h2 {
@@ -209,7 +211,7 @@ body {
 
 .Inner-MainHero {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 50%;
   /* padding-top: 15px; */
@@ -423,20 +425,20 @@ body {
   gap: 1px;
   bottom: 11px;
   left: 10px;
-  width: 50%;
+  width: 75%;
   align-items: flex-start;
 }
 
 .GameTitleCard {
   margin: 0;
   color: white;
-  font-size: 11px;
+  font-size: 25px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }
 
 .GameTypeCard {
-  font-size: 11px;
+  font-size: 17px;
   margin: 0;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -446,6 +448,7 @@ body {
 .GameTagContainer {
   display: flex;
   width: 100%;
+  justify-content: space-between;
 }
 
 .GameTagCard {
@@ -453,10 +456,11 @@ body {
   background-color: rgba(255, 255, 255, 0.664);
   width: 100%;
   border-radius: 23px;
-  font-size: 8px;
+  font-size: 14px;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+  text-align: center;
 }
 
 .logo-search-bar {
@@ -649,6 +653,7 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .remove-friend-btn:hover {
@@ -842,10 +847,6 @@ body {
   display: flex;
 }
 
-.active {
-  margin-top: 10px;
-}
-
 .send-message-wrapper {
   position: relative;
   margin: 1rem 0;
@@ -965,7 +966,7 @@ body {
 
 .ring-fill {
   fill: none;
-  stroke: #00f;
+  stroke: white;
   stroke-width: 4;
   stroke-dasharray: 100;
   stroke-dashoffset: 100;

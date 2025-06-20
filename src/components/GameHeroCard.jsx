@@ -17,6 +17,7 @@ function GameHeroCard() {
     async function loadPopularGames() {
       try {
         const data = await fetchPopularGames(3, 7);
+
         setPopularGame(data.results);
       } catch (error) {
         console.error(error);
@@ -87,15 +88,11 @@ function GameHeroCard() {
               <h2 className="GameTitleCard">{game.name}</h2>{' '}
               {/* ✅ CORRECTION #4: use game.name */}
               <p className="GameTypeCard">
-                {game.genres?.[0]?.name || 'Unknown'}
+                {game.genres?.[1]?.name || 'Unknown'}
               </p>
               <div className="GameTagContainer">
-                <span className="GameTagCard">
-                  {game.metacritic
-                    ? `Metacritic: ${game.metacritic}`
-                    : 'No Rating'}
-                </span>
-                <span className="GameTagCard">{game.released}</span>
+                <span className="GameTagCard">{game.tags?.[0]?.name}</span>
+                <span className="GameTagCard">{game.tags?.[2]?.name}</span>
               </div>
             </div>
           </div>

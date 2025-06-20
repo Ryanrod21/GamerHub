@@ -14,7 +14,7 @@ export async function searchGames(
   page = 1,
   parentPlatforms = ''
 ) {
-  let url = `${BASE_URL}/games?key=${API_KEY}&search=${query}&search_precise=true&ordering=${ordering}&page=${page}`;
+  let url = `${BASE_URL}/games?key=${API_KEY}&search=${query}&search_precise=true&ordering=${ordering}&page=${page}&page_size=12`;
 
   if (parentPlatforms) {
     url += `&parent_platforms=${parentPlatforms}`;

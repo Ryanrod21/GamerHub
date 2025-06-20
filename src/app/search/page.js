@@ -45,39 +45,40 @@ export default function SearchResultsPage() {
     <div className="search-hero">
       <h1>Search Results for "{query}"</h1>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="sort">Sort by: </label>
-        <select id="sort" value={sort} onChange={handleSortChange}>
-          <option value="">Default</option>
-          <option value="-rating">Highest Rated</option>
-          <option value="rating">Lowest Rated</option>
-          <option value="-released">Newest</option>
-          <option value="released">Oldest</option>
-        </select>
-      </div>
+      <div className="filter-container">
+        <div className="filter-group">
+          <label htmlFor="sort">Sort by</label>
+          <select id="sort" value={sort} onChange={handleSortChange}>
+            <option value="">Default</option>
+            <option value="-rating">Highest Rated</option>
+            <option value="rating">Lowest Rated</option>
+            <option value="-released">Newest</option>
+            <option value="released">Oldest</option>
+          </select>
+        </div>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="platforms">Filter by Platform: </label>
-        <select
-          id="platforms"
-          value={parentPlatforms}
-          onChange={(e) => {
-            const selected = e.target.value;
-            router.push(
-              `/search?query=${encodeURIComponent(
-                query
-              )}&sort=${sort}&platforms=${selected}`
-            );
-          }}
-        >
-          <option value="">All</option>
-          <option value="1">PC</option>
-          <option value="2">PlayStation</option>
-          <option value="3">Xbox</option>
-          <option value="4">iOS</option>
-          <option value="8">Nintendo</option>
-          {/* Add more as needed */}
-        </select>
+        <div className="filter-group">
+          <label htmlFor="platforms">Filter by Platform</label>
+          <select
+            id="platforms"
+            value={parentPlatforms}
+            onChange={(e) => {
+              const selected = e.target.value;
+              router.push(
+                `/search?query=${encodeURIComponent(
+                  query
+                )}&sort=${sort}&platforms=${selected}`
+              );
+            }}
+          >
+            <option value="">All</option>
+            <option value="1">PC</option>
+            <option value="2">PlayStation</option>
+            <option value="3">Xbox</option>
+            <option value="4">iOS</option>
+            <option value="8">Nintendo</option>
+          </select>
+        </div>
       </div>
 
       <ul>
@@ -105,22 +106,24 @@ export default function SearchResultsPage() {
         ))}
       </ul>
 
-      <div style={{ marginTop: '20px' }}>
-        <button
-          onClick={() => setPage((p) => Math.max(p - 1, 1))}
-          disabled={!prevPage}
-          className="prev-button"
-        >
-          Previous
-        </button>
-        <button
-          onClick={() => setPage((p) => p + 1)}
-          disabled={!nextPage}
-          style={{ marginLeft: '10px' }}
-          className="next-button"
-        >
-          Next
-        </button>
+      <div className="next-prev-button">
+        {prevPage && (
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            disabled={!prevPage}
+          >
+            Previous
+          </button>
+        )}
+        {nextPage && (
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={!nextPage}
+            style={{ marginLeft: '10px' }}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

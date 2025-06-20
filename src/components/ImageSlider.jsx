@@ -16,7 +16,6 @@ function ImageSlider() {
     async function fetchGames() {
       try {
         const data = await getTopGames();
-
         setGameNews(data.results);
       } catch (err) {
         console.error('Error fetching top games:', err);
@@ -80,7 +79,7 @@ function ImageSlider() {
       <div className="MainNews-SlideBtn">
         <h2>{game.name}</h2>
         <p>
-          {game.released} | Rating: {game.rating}
+          {game.genres[0].name} | Rating: {game.rating}
         </p>
         <div className="tags">
           {game.tags?.slice(0, 3).map((tag) => (

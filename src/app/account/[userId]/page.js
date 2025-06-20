@@ -3,7 +3,7 @@ import { db } from '@/firebase/firebase';
 import '../account.css';
 
 export default async function UserProfile({ params }) {
-  const { userId } = params;
+  const { userId } = await params;
 
   const userRef = doc(db, 'users', userId);
   const docSnap = await getDoc(userRef);
