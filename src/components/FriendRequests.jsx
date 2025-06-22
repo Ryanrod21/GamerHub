@@ -117,8 +117,18 @@ function FriendRequests() {
                   <strong>{req.fromUsername}</strong> sent you a friend request
                 </p>
                 <div className="notif-buttons">
-                  <button onClick={() => acceptRequest(req)}>Accept</button>
-                  <button onClick={() => rejectRequest(req)}>Reject</button>
+                  <button
+                    className="send-btn"
+                    onClick={() => acceptRequest(req)}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="cancel-btn"
+                    onClick={() => rejectRequest(req)}
+                  >
+                    Reject
+                  </button>
                 </div>
               </div>
             </div>

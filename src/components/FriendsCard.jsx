@@ -7,6 +7,7 @@ import { removeFriend } from '@/utils/friendUtils';
 import SearchFriends from './SearchFriends';
 import Link from 'next/link';
 import SendMessageButton from './SendMessage';
+import '../app/friends-page/friends-page.css';
 
 function FriendsCard() {
   const { user, userData } = useAuth();
