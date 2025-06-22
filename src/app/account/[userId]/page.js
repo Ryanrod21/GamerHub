@@ -1,15 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation'; 
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import '../account.css';
 
-export default function UserProfile({ params }) {
-  const { userId } = params;
+export default function UserProfile() {
+  const { userId } = useParams(); 
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+    if (!userId) return;
+
     const fetchUserData = async () => {
       try {
         const userRef = doc(db, 'users', userId);
