@@ -15,16 +15,37 @@ import { db, auth } from '@/firebase/firebase';
 export default function GameLikeButton({ gameId }) {
   const [likes, setLikes] = useState([]);
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
 
-  // ✅ Watch for logged-in user
+  // ✅ Watch auth and fetch username from Firestore
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
+
+      if (firebaseUser) {
+        try {
+          const userDocRef = doc(db, 'users', firebaseUser.uid);
+          const userSnap = await getDoc(userDocRef);
+
+          if (userSnap.exists()) {
+            const data = userSnap.data();
+            setUsername(data.username || firebaseUser.email); // fallback to email
+          } else {
+            setUsername(firebaseUser.email);
+          }
+        } catch (err) {
+          console.error('Error fetching user profile:', err);
+          setUsername(firebaseUser.email); // fallback
+        }
+      } else {
+        setUsername('');
+      }
     });
+
     return () => unsubscribe();
   }, []);
 
-  // ✅ Fetch likes from Firestore
+  // ✅ Fetch likes for the game
   useEffect(() => {
     const fetchLikes = async () => {
       try {
@@ -36,34 +57,27 @@ export default function GameLikeButton({ gameId }) {
           return;
         }
 
-        if (user) {
-          console.log('Firebase Auth user object:', user);
-        }
-
         const data = snap.data();
-        // Defensive: make sure likes is an array
         const likesArray = Array.isArray(data.likes) ? data.likes : [];
-
         setLikes(likesArray);
       } catch (err) {
         console.error('Error fetching likes:', err);
-        setLikes([]); // fallback
+        setLikes([]);
       }
     };
 
     fetchLikes();
-  }, [gameId, user]);
+  }, [gameId]);
 
   // ✅ Handle Like/Unlike
   const handleLike = async () => {
     if (!user) return alert('Please log in');
+    if (!username) return;
 
-    const username = user.displayName || user.email || user.uid;
     const ref = doc(db, 'games', gameId);
     const snap = await getDoc(ref);
 
     if (!snap.exists()) {
-      // Create doc with initial likes array
       await setDoc(ref, { likes: [username] });
       setLikes([username]);
       return;
@@ -83,12 +97,10 @@ export default function GameLikeButton({ gameId }) {
 
   if (!user) return <p>Please log in to like this game</p>;
 
-  const username = user.username || user.email || user.uid;
-
   return (
     <div>
       <button onClick={handleLike}>
-        {Array.isArray(likes) && likes.includes(username) ? 'Unlike' : 'Like'}
+        {likes.includes(username) ? 'Unlike' : 'Like'}
       </button>
       <p>Liked by: {likes.length ? likes.join(', ') : 'No likes yet'}</p>
     </div>
