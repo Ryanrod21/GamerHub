@@ -1,18 +1,35 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import '../account.css';
 
-export default async function UserProfile({ params }) {
-  const { userId } = await params;
+export default function UserProfile({ params }) {
+  const { userId } = params;
+  const [userData, setUserData] = useState(null);
 
-  const userRef = doc(db, 'users', userId);
-  const docSnap = await getDoc(userRef);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userRef = doc(db, 'users', userId);
+        const docSnap = await getDoc(userRef);
 
-  if (!docSnap.exists()) {
-    return <div>User not found.</div>;
-  }
+        if (docSnap.exists()) {
+          setUserData(docSnap.data());
+        } else {
+          setUserData(null);
+        }
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+        setUserData(null);
+      }
+    };
 
-  const userData = docSnap.data();
+    fetchUserData();
+  }, [userId]);
+
+  if (userData === null) return <div>User not found or access denied.</div>;
 
   return (
     <div className="account-page">
@@ -28,7 +45,6 @@ export default async function UserProfile({ params }) {
         <h1>{userData.username}</h1>
       </div>
 
-      {/* Other Account Info */}
       <div className="account-info">
         <div className="account-details">
           <h1>First Name:</h1>
