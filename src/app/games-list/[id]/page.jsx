@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { getGameDetails, getGameScreenShot } from '@/RAWG/rawg';
 import '../games-list.css';
+import GameLikeButton from './LikeButton';
 
 export default function GameDetailPage() {
   const { id } = useParams();
@@ -76,6 +77,8 @@ export default function GameDetailPage() {
           </div>
         </div>
       )}
+
+      <GameLikeButton gameId={id} />
     </div>
   );
 }
