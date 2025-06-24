@@ -23,8 +23,7 @@ export default function GameDetailPage() {
           getGameDetails(id),
           getGameScreenShot(id),
         ]);
-
-        console.log('hi', gameData);
+        console.log(gameData);
         setGame(gameData);
         setScreenshot(screenshotData.results); // array of screenshots
       } catch (err) {
@@ -67,10 +66,20 @@ export default function GameDetailPage() {
 
           <div className="game-info">
             <p>
+              <strong>Rated:</strong> {game.esrb_rating.name}
+            </p>
+            <p>
               <strong>Released:</strong> {game.released}
             </p>
             <p>
               <strong>Rating:</strong> {game.rating} / {game.rating_top}
+            </p>
+            <p>
+              <strong>Publisher:</strong> {game.publishers[0].name}
+            </p>
+            <p>
+              <strong>Platforms:</strong>{' '}
+              {game.platforms.map((p) => p.platform.name).join(', ')}
             </p>
           </div>
         </div>

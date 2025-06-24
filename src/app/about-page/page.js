@@ -17,13 +17,14 @@ const AboutPage = () => {
           <div className="img-p">
             <img src="./kh2.jpg" />
             <p>
-              Gamer Hub is a fun and interactive site I'm building for gamers to
-              explore and connect. You can look up games, read up on them, check
-              out the latest news, and see who’s streaming that game live. Users
-              can log in, add friends, chat, and even start or join communities
-              to find people to play with. There’s also built-in music so you
-              can listen while browsing—kind of like your own personal gaming
-              lounge.
+              The GamerHub is your ultimate all-in-one gaming dashboard. Search
+              for any game and dive into detailed information, including
+              descriptions, ratings (E, T, M), screenshots, publishers, and
+              supported platforms. Stay connected by liking your favorite
+              titles, adding friends, and messaging other gamers directly on the
+              site. Whether you're exploring new games or building your gamer
+              network, The GamerHub delivers a complete social and discovery
+              experience for gamers.
             </p>
           </div>
         </div>

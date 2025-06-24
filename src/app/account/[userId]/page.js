@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'; 
+import { useParams } from 'next/navigation';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
 import '../account.css';
 
 export default function UserProfile() {
-  const { userId } = useParams(); 
+  const { userId } = useParams();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,6 @@ export default function UserProfile() {
         setUserData(null);
       }
     };
-
     fetchUserData();
   }, [userId]);
 
