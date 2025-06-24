@@ -57,6 +57,7 @@ function SearchFriends() {
               handleSearch();
             }
           }}
+          className="search-friends-input"
         />
         <button onClick={handleSearch}>Search</button>
         <FontAwesomeIcon

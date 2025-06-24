@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.loadingScreen-container img {
+  width: 100%;
+  margin: 0;
+}
+
 .loadingScreen-container h1 {
   font-size: 40px;
   margin-bottom: 16px;

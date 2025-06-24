@@ -87,6 +87,7 @@
 .friends-body .FriendsCard {
   gap: 40px;
   width: 100%;
+  justify-content: center;
 }
 
 .friends-body .FriendsOfflineCard {
@@ -200,4 +201,20 @@
   display: flex;
   align-items: center;
   gap: 30px;
+}
+
+@media (max-width: 900px) {
+  .friends-page {
+    width: 88%;
+  }
+}
+
+@media (max-width: 690px) {
+  .friends-page {
+    width: 84%;
+  }
+
+  .search-friends-container .search-friends-input::placeholder {
+    font-size: 15px;
+  }
 }
