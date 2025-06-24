@@ -59,18 +59,6 @@ function GameGenres() {
     setSelectedGameId(null);
   }
 
-  if (selectedGameId) {
-    // Show game details view
-    return (
-      <div>
-        <GameDetails
-          selectedGameId={selectedGameId}
-          onBack={() => setSelectedGameId(null)}
-        />
-      </div>
-    );
-  }
-
   if (!selectedGenre) {
     // Show genre list
     return (

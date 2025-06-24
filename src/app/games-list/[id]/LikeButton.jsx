@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '@/firebase/firebase';
+import '../games-list.css';
 
 export default function GameLikeButton({ gameId }) {
   const [likes, setLikes] = useState([]);
@@ -98,11 +99,14 @@ export default function GameLikeButton({ gameId }) {
   if (!user) return <p>Please log in to like this game</p>;
 
   return (
-    <div>
-      <button onClick={handleLike}>
+    <div className="like-btn-container">
+      <p>Liked by: {likes.length ? likes.join(', ') : 'No likes yet'}</p>
+      <button
+        onClick={handleLike}
+        className={likes.includes(username) ? 'unlike-button' : 'like-button'}
+      >
         {likes.includes(username) ? 'Unlike' : 'Like'}
       </button>
-      <p>Liked by: {likes.length ? likes.join(', ') : 'No likes yet'}</p>
     </div>
   );
 }

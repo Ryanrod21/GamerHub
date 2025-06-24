@@ -185,7 +185,7 @@ body {
   background-color: #32323294;
   padding: 10px;
   border-radius: 10px;
-  width: 310px;
+  width: 350px;
   height: 254px;
 }
 
@@ -790,7 +790,7 @@ body {
   border: 1px solid #e2e2e2;
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .message-card p {

@@ -58,6 +58,7 @@
   padding: 20px;
   font-family: 'Segoe UI', sans-serif;
   color: #222;
+  position: relative;
 }
 
 .game-hero {
@@ -175,6 +176,45 @@
 .games-genre .back-genre-button {
   width: 220px;
   font-size: 15px;
+}
+
+.like-btn-container {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.like-button {
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  width: 150px;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+
+.unlike-button {
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 4px;
+  width: 150px;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+
+.back-button {
+  color: #fff;
+  background-color: #58a6ff;
+  border: none;
+  border-radius: 4px;
+  width: 150px;
+  padding: 8px 12px;
+  font-weight: 700;
+  position: absolute;
+  top: -25px;
+  left: -330px;
 }
 
 @media (max-width: 1200px) {
