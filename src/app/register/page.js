@@ -12,7 +12,7 @@ import {
   where,
   collection,
 } from 'firebase/firestore';
-import { db } from '@/firebase/firebase';
+import { db, auth } from '@/firebase/firebase';
 
 function Register() {
   const usernameRef = useRef();
@@ -52,25 +52,19 @@ function Register() {
 
     setIsCreating(true);
     try {
-      const usernameQuery = query(
-        collection(db, 'users'),
-        where('username', '==', username)
-      );
-
-      const querySnapshot = await getDocs(usernameQuery);
-
-      if (!querySnapshot.empty) {
-        setError('Username already taken');
-        return;
-      }
-
+      console.log('Creating user...');
       const userCredential = await doCreateUserWithEmailAndPassword(
         email,
         password
       );
       const user = userCredential.user;
+      console.log('User created:', user.uid);
+      console.log('auth.currentUser:', auth.currentUser?.uid);
 
-      await setDoc(doc(db, 'users', user.uid), {
+      const userDocRef = doc(db, 'users', user.uid);
+      console.log('Writing to Firestore:', userDocRef.path);
+
+      await setDoc(userDocRef, {
         username,
         username_lowercase: username.toLowerCase(),
         firstname,
@@ -78,12 +72,12 @@ function Register() {
         profilePic: '/acctdefault.jpg',
       });
 
-      console.log('user saved!');
-
+      console.log('User doc created!');
       router.push('/');
     } catch (err) {
-      console.error('Firestore Error ', err);
-      setError(err.message);
+      console.error('❌ Error code:', err.code);
+      console.error('❌ Error message:', err.message);
+      setError(`${err.code}: ${err.message}`);
     } finally {
       setIsCreating(false);
     }

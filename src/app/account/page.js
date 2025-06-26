@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { doPasswordChange, doEmailchange } from '@/firebase/auth';
 import { useRouter } from 'next/navigation';
 import AccountPicSelector from '@/data/AccountPic';
+import DeleteAccountButton from './DeleteAccount';
 
 function Account() {
   const { user, userData, userLoggedIn, loading, updateUserData } = useAuth();
@@ -96,8 +97,6 @@ function Account() {
             </button>
           </div>
         )}
-
-        <h1>{userData.status}</h1>
 
         {/* Show image selection if editField === 'accountPic' */}
         {editField === 'accountPic' && (
@@ -299,6 +298,9 @@ function Account() {
           )}
         </div>
       )}
+      <div className="delete-acct-div">
+        {editing && <DeleteAccountButton />}
+      </div>
     </div>
   );
 }
