@@ -1054,12 +1054,33 @@ body {
   .MainNews-SlideBtn p {
     font-size: 13px;
   }
+
+  .nav-content-wrapper {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 900px) {
+  body {
+    margin: 0;
+  }
+
   .MainNews-SlideBtn {
     padding: 10px;
+    font-size: 10px;
     height: 110px;
+    width: 215px;
+  }
+
+  .circle-button {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .progress-ring {
+    width: 30px;
+    height: 30px;
   }
 
   .MainNews button {
@@ -1103,5 +1124,54 @@ body {
 
   .main-left-right-btn {
     padding-top: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .MainNews {
+    box-shadow: none;
+  }
+
+  .GameHeroContainer {
+    align-items: center;
+  }
+
+  .Logout {
+    font-size: 7px;
+    padding: 3px 6px;
+  }
+
+  .SideHeroMobile {
+    font-size: 7px;
+  }
+
+  .MainNews-SlideBtn {
+    width: 110px;
+    height: 70px;
+    font-size: 6px;
+    gap: 1px;
+    padding: 8px;
+    top: 50%;
+  }
+
+  .MainNews-SlideBtn h2 {
+    font-size: 7px;
+  }
+
+  .circle-button {
+    width: 15px;
+    height: 15px;
+    font-size: 6px;
+    margin: 6px;
+  }
+
+  .progress-ring {
+    width: 15px;
+    height: 15px;
+  }
+
+  .GameHeroCard {
+    height: 400px;
+    width: 340px;
   }
 }
