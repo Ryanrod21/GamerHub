@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getGameGenres, getGamesByGenres } from '@/RAWG/rawg';
 import GameDetails from './GameDetails';
 import Link from 'next/link';
+import '../app/App.css';
 
 function GameGenres() {
   const [genres, setGenres] = useState([]);
@@ -71,16 +72,7 @@ function GameGenres() {
             style={{ cursor: 'pointer' }}
           >
             <h3>{genre.name}</h3>
-            <img
-              src={genre.image_background}
-              alt={genre.name}
-              style={{
-                width: '500px',
-                height: '300px',
-                borderRadius: '8px',
-                objectFit: 'cover',
-              }}
-            />
+            <img src={genre.image_background} alt={genre.name} />
           </div>
         ))}
       </div>
@@ -110,15 +102,7 @@ function GameGenres() {
                 >
                   <h4>{game.name}</h4>
                   {game.background_image && (
-                    <img
-                      src={game.background_image}
-                      alt={game.name}
-                      style={{
-                        width: '500px',
-                        height: '300px',
-                        borderRadius: '8px',
-                      }}
-                    />
+                    <img src={game.background_image} alt={game.name} />
                   )}
                 </div>
               </Link>

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { fetchPopularGames } from '@/RAWG/rawg';
 import GameDetails from './GameDetails';
 import Link from 'next/link';
+import { settings } from 'firebase/analytics';
 
 function GameHeroCard() {
   const [popularGame, setPopularGame] = useState([]);
@@ -51,23 +52,17 @@ function GameHeroCard() {
       {
         breakpoint: 680,
         settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 450,
+        settings: {
           slidesToShow: 1,
         },
       },
     ],
   };
-
-  if (selectedGameId) {
-    // Show game details view
-    return (
-      <div>
-        <GameDetails
-          selectedGameId={selectedGameId}
-          onBack={() => setSelectedGameId(null)}
-        />
-      </div>
-    );
-  }
 
   const RenderGame = popularGame.map((game) => {
     return (

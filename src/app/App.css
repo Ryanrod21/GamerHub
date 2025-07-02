@@ -985,6 +985,19 @@ body {
   display: flex;
 }
 
+.genre-card img {
+  width: 500px;
+  height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.game-card img {
+  width: 500px;
+  height: 300px;
+  border-radius: 8px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1058,6 +1071,21 @@ body {
   .nav-content-wrapper {
     margin: 0;
   }
+
+  .GameHeroCard {
+    width: 400px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 1050) {
+  .GameHeroCard {
+    width: 300px;
+  }
+
+  body {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -1109,6 +1137,12 @@ body {
   }
 }
 
+@media (max-width: 780px) {
+  .GameHeroCard {
+    width: 350px;
+  }
+}
+
 @media screen and (max-width: 690px) {
   .MainNews-SlideBtn {
     width: 120px;
@@ -1125,6 +1159,11 @@ body {
   .main-left-right-btn {
     padding-top: 0;
   }
+
+  .GameHeroCard {
+    width: 90%;
+    height: 320px;
+  }
 }
 
 @media (max-width: 450px) {
@@ -1133,7 +1172,7 @@ body {
   }
 
   .GameHero {
-    height: 425px;
+    height: 300px;
   }
 
   .GameHeroContainer {
@@ -1175,14 +1214,15 @@ body {
   }
 
   .GameHeroCard {
-    height: 400px;
-    width: 340px;
+    height: 200px;
+    width: 95%;
   }
 
   .search-bar input {
     width: 38px;
     height: 2px;
     padding: 6px;
+    font-size: 8px;
   }
 
   .search-bar input::placeholder {
@@ -1197,5 +1237,25 @@ body {
 
   .SideHeroMobile p {
     padding: 4px 0;
+  }
+
+  /* Genere list  */
+  .genre-card {
+    text-align: center;
+  }
+
+  .genre-card img {
+    width: 300px;
+    height: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* Game card */
+  .game-card img {
+    width: 300px;
+    height: 180px;
+    border-radius: 8px;
+    object-fit: cover;
   }
 }

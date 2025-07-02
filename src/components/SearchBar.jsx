@@ -39,6 +39,8 @@ export default function SearchBar() {
         className="searchbar-mag"
         icon={faMagnifyingGlass}
         size="lg"
+        onKeyDown={handleKeyPress}
+        onClick={handleSearch}
       />
     </div>
   );
