@@ -1132,6 +1132,10 @@ body {
     box-shadow: none;
   }
 
+  .GameHero {
+    height: 425px;
+  }
+
   .GameHeroContainer {
     align-items: center;
   }
@@ -1173,5 +1177,25 @@ body {
   .GameHeroCard {
     height: 400px;
     width: 340px;
+  }
+
+  .search-bar input {
+    width: 38px;
+    height: 2px;
+    padding: 6px;
+  }
+
+  .search-bar input::placeholder {
+    font-size: 5px;
+  }
+
+  .searchbar-mag {
+    width: 4px;
+    height: 4px;
+    padding: 4px;
+  }
+
+  .SideHeroMobile p {
+    padding: 4px 0;
   }
 }

@@ -247,4 +247,28 @@
   .nav-link-dropdown ul {
     padding: 0;
   }
+
+  @media (max-width: 450px) {
+    .navbar h2 {
+      font-size: 8px;
+    }
+
+    .logo-search-bar {
+      padding-left: 5px;
+    }
+
+    .nav-link-dropdown {
+      padding-right: 5px;
+    }
+
+    .nav-link-dropdown ul {
+      font-size: 7px;
+      gap: 6px;
+    }
+
+    .navbar-profile-img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
