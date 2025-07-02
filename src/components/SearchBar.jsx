@@ -32,7 +32,9 @@ export default function SearchBar() {
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button type="button" onClick={handleSearch}>
+        Search
+      </button>
       <FontAwesomeIcon
         className="searchbar-mag"
         icon={faMagnifyingGlass}

@@ -71,7 +71,12 @@ export default function Dropdown() {
             Dark
           </li>
           <li
-            style={{ ...menuItemStyle, display: 'flex', alignItems: 'center' }}
+            style={{
+              ...menuItemStyle,
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
           >
             Custom:&nbsp;
             <input

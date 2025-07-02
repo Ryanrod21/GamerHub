@@ -270,5 +270,21 @@
       width: 20px;
       height: 20px;
     }
+
+    .dropdown-toggle {
+      width: 20px;
+    }
+
+    .dropdown-menu {
+      width: 30px;
+    }
+    .dropdown-menu input {
+      width: 31px;
+      height: 18px;
+    }
+
+    .dropdown-toggle svg {
+      width: 8px;
+    }
   }
 }
