@@ -7,6 +7,7 @@ import '../app/games-list/games-list.css';
 import { AuthProvider } from '@/context/authContext';
 import ProfileData from '@/data/ProfileData';
 import { MessageProvider } from '@/context/messageContext/messageContext';
+import './App.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
